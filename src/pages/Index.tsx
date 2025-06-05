@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -98,15 +97,15 @@ const Index = () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Header animation with dramatic entrance
+    // Header animation
     if (headerRef.current) {
       gsap.fromTo(headerRef.current, 
-        { opacity: 0, y: -100, rotateX: -90 },
-        { opacity: 1, y: 0, rotateX: 0, duration: 1.2, ease: "power4.out" }
+        { opacity: 0, y: -50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
       );
     }
 
-    // Hero section with staggered text animation
+    // Hero section animation
     if (heroRef.current) {
       const heroTitle = heroRef.current.querySelector('.hero-title');
       const heroSubtitle = heroRef.current.querySelector('.hero-subtitle');
@@ -114,15 +113,14 @@ const Index = () => {
       const heroButton = heroRef.current.querySelector('.hero-button');
 
       gsap.fromTo([heroTitle, heroSubtitle, heroDesc, heroButton],
-        { opacity: 0, y: 100, scale: 0.8 },
+        { opacity: 0, y: 50 },
         { 
           opacity: 1, 
           y: 0, 
-          scale: 1, 
-          duration: 1, 
-          stagger: 0.3, 
+          duration: 0.8, 
+          stagger: 0.2, 
           ease: "power3.out",
-          delay: 0.5
+          delay: 0.3
         }
       );
     }
@@ -141,23 +139,16 @@ const Index = () => {
       }
     }
 
-    // Products grid with 3D entrance effect
+    // Products grid animation
     if (productsRef.current) {
       const productCards = productsRef.current.querySelectorAll('.product-card');
       gsap.fromTo(productCards,
-        { 
-          opacity: 0, 
-          y: 100, 
-          rotateY: -45,
-          scale: 0.5 
-        },
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          rotateY: 0,
-          scale: 1,
-          duration: 1,
-          stagger: 0.15,
+          duration: 0.6,
+          stagger: 0.1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: productsRef.current,
@@ -175,69 +166,36 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white relative overflow-x-hidden">
-      {/* Enhanced grunge texture overlay */}
-      <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
-        <div className="w-full h-full bg-black" style={{
-          backgroundImage: `
-            radial-gradient(circle at 25% 25%, #333 1px, transparent 1px),
-            radial-gradient(circle at 75% 75%, #444 1px, transparent 1px),
-            linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%),
-            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.8'/%3E%3C/svg%3E")
-          `,
-          backgroundSize: '50px 50px, 80px 80px, 100% 100%, 150px 150px'
-        }} />
-      </div>
-
-      {/* Animated particles background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-30 animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Enhanced Header */}
-      <header ref={headerRef} className="relative z-10 p-6 flex justify-between items-center border-b-2 border-red-600 bg-gradient-to-r from-black via-gray-900 to-black backdrop-blur-lg">
+    <div className="min-h-screen bg-white text-black">
+      {/* Header */}
+      <header ref={headerRef} className="p-6 flex justify-between items-center border-b-2 border-black bg-white">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-red-600 flex items-center justify-center transform rotate-45">
-            <span className="text-white font-bold text-xl transform -rotate-45">R</span>
+          <div className="w-12 h-12 bg-black text-white flex items-center justify-center rounded-lg">
+            <span className="font-bold text-xl">R</span>
           </div>
-          <h1 className="text-4xl font-bold tracking-wider bg-gradient-to-r from-white via-red-400 to-white bg-clip-text text-transparent" 
-              style={{ fontFamily: 'serif', textShadow: '0 0 20px rgba(255,255,255,0.5)' }}>
+          <h1 className="text-4xl font-bold tracking-wider text-black">
             Rock County
           </h1>
         </div>
         <div className="flex items-center gap-6">
           <nav className="hidden md:flex gap-8">
-            <a href="#" className="font-medium hover:text-red-400 transition-all duration-300 hover:scale-110 relative group">
+            <a href="#" className="font-medium hover:text-gray-600 transition-all duration-300">
               Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="#shop" className="font-medium hover:text-red-400 transition-all duration-300 hover:scale-110 relative group">
+            <a href="#shop" className="font-medium hover:text-gray-600 transition-all duration-300">
               Shop
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="#gallery" className="font-medium hover:text-red-400 transition-all duration-300 hover:scale-110 relative group">
+            <a href="#gallery" className="font-medium hover:text-gray-600 transition-all duration-300">
               Gallery
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></span>
             </a>
           </nav>
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative p-3 hover:bg-red-600 hover:text-white transition-all duration-300 border-2 border-red-600 bg-gradient-to-r from-transparent to-red-900/20 backdrop-blur-sm transform hover:scale-105 hover:rotate-1"
+            className="relative p-3 border-2 border-black hover:bg-black hover:text-white transition-all duration-300 rounded-lg"
           >
             <span className="text-sm font-bold tracking-wider">CART ({totalItems})</span>
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold animate-pulse">
+              <span className="absolute -top-2 -right-2 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold">
                 {totalItems}
               </span>
             )}
@@ -245,56 +203,46 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Enhanced Scrolling Marquee */}
-      <div ref={marqueeRef} className="relative z-10 py-6 bg-gradient-to-r from-red-900 via-red-600 to-red-900 overflow-hidden border-b-2 border-red-400 shadow-2xl">
-        <div className="marquee-text whitespace-nowrap text-3xl font-bold tracking-wider text-white" 
-             style={{ textShadow: '0 0 10px rgba(0,0,0,0.8)' }}>
-          ⚡ YOU ROCK ⚡ UNLEASH YOUR REBELLION ⚡ YOU ROCK ⚡ UNLEASH YOUR REBELLION ⚡ YOU ROCK ⚡
+      {/* Scrolling Marquee */}
+      <div ref={marqueeRef} className="py-4 bg-black text-white overflow-hidden">
+        <div className="marquee-text whitespace-nowrap text-2xl font-bold tracking-wider">
+          ★ ROCK COUNTY ★ AUTHENTIC STREETWEAR ★ ROCK COUNTY ★ AUTHENTIC STREETWEAR ★
         </div>
       </div>
 
-      {/* Enhanced Hero Section */}
-      <section ref={heroRef} className="relative z-10 py-40 px-6 text-center border-b-2 border-gray-700 bg-gradient-to-b from-black via-gray-900 to-red-950/20">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 via-transparent to-red-900/10"></div>
-        <div className="relative z-10">
-          <h2 className="hero-title text-8xl md:text-9xl font-bold mb-8 tracking-wider bg-gradient-to-r from-white via-red-400 to-white bg-clip-text text-transparent" 
-              style={{ 
-                fontFamily: 'serif', 
-                textShadow: '0 0 50px rgba(255,0,0,0.3)',
-                filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.1))'
-              }}>
-            ROCK
-          </h2>
-          <p className="hero-subtitle text-3xl md:text-4xl font-light tracking-widest mb-12 text-red-300 opacity-90">
-            COUNTY REBELLION
-          </p>
-          <p className="hero-desc text-gray-300 max-w-3xl mx-auto mb-16 text-xl leading-relaxed bg-black/30 p-8 rounded-lg backdrop-blur-sm border border-red-900/30">
-            Embrace the darkness. Channel your inner rebel with our exclusive collection of streetwear 
-            that speaks to the soul of the underground. Every piece tells a story of defiance, 
-            crafted for those who dare to stand apart from the crowd.
-          </p>
-          <button 
-            onClick={() => document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })}
-            className="hero-button bg-gradient-to-r from-red-600 to-red-800 text-white px-16 py-6 hover:from-red-700 hover:to-red-900 border-2 border-red-400 transition-all duration-500 font-bold tracking-wider text-xl transform hover:scale-105 hover:rotate-1 shadow-2xl"
-          >
-            ENTER THE REBELLION →
-          </button>
-        </div>
+      {/* Hero Section */}
+      <section ref={heroRef} className="py-20 px-6 text-center bg-white">
+        <h2 className="hero-title text-8xl md:text-9xl font-bold mb-4 tracking-wider text-black">
+          ROCK
+        </h2>
+        <p className="hero-subtitle text-3xl md:text-4xl font-light tracking-widest mb-8 text-gray-600">
+          COUNTY REBELLION
+        </p>
+        <p className="hero-desc text-gray-700 max-w-3xl mx-auto mb-12 text-xl leading-relaxed">
+          Embrace the darkness. Channel your inner rebel with our exclusive collection of streetwear 
+          that speaks to the soul of the underground.
+        </p>
+        <button 
+          onClick={() => document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })}
+          className="hero-button bg-black text-white px-12 py-4 hover:bg-gray-800 transition-all duration-300 font-bold tracking-wider text-xl rounded-lg"
+        >
+          SHOP NOW →
+        </button>
       </section>
 
-      {/* Enhanced Products Grid */}
-      <section id="shop" ref={productsRef} className="relative z-10 py-32 px-6 bg-gradient-to-b from-red-950/20 to-black">
-        <div className="text-center mb-20">
-          <h3 className="text-6xl font-bold mb-6 tracking-wider bg-gradient-to-r from-white via-red-400 to-white bg-clip-text text-transparent">
-            REBEL COLLECTION
+      {/* Products Grid */}
+      <section id="shop" ref={productsRef} className="py-20 px-6 bg-gray-50">
+        <div className="text-center mb-16">
+          <h3 className="text-6xl font-bold mb-4 tracking-wider text-black">
+            COLLECTION
           </h3>
-          <div className="w-32 h-1 bg-gradient-to-r from-red-600 to-red-400 mx-auto mb-8"></div>
-          <p className="text-center text-gray-400 mb-16 text-xl max-w-2xl mx-auto">
-            Handpicked pieces forged in the fires of rebellion. Each item carries the spirit of the underground.
+          <div className="w-32 h-1 bg-black mx-auto mb-8"></div>
+          <p className="text-center text-gray-600 mb-16 text-xl max-w-2xl mx-auto">
+            Handpicked pieces forged in the spirit of rebellion. Each item carries the essence of streetwear.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {products.map((product) => (
             <ProductCard
               key={product.id}
@@ -312,13 +260,6 @@ const Index = () => {
 
       {/* Newsletter Section */}
       <Newsletter />
-
-      {/* Enhanced Limited Time Banner */}
-      <div className="relative z-10 py-6 bg-gradient-to-r from-red-900 via-red-700 to-red-900 overflow-hidden border-y-2 border-red-400">
-        <div className="marquee-text whitespace-nowrap text-xl font-bold tracking-wider text-white">
-          🔥 REBELLION SALE ✱ Free Shipping on Orders Over ₦50,000 ✱ LIMITED TIME ✱ REBELLION SALE ✱ Free Shipping on Orders Over ₦50,000 ✱
-        </div>
-      </div>
 
       {/* Footer */}
       <Footer />

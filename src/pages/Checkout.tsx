@@ -4,10 +4,9 @@ import { gsap } from "gsap";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useNavigate } from "react-router-dom";
 
@@ -75,17 +74,21 @@ const Checkout = () => {
     }
   }, [cartItems.length, navigate]);
 
+  const formatPrice = (price: number) => {
+    return `₦${price.toLocaleString()}`;
+  };
+
   const onSubmit = (data: CheckoutFormData) => {
     // Generate order ID
-    const orderId = `URB${Date.now().toString().slice(-6)}`;
+    const orderId = `RC${Date.now().toString().slice(-6)}`;
     
     // Create order summary
     const orderItems = cartItems.map(item => 
-      `${item.name} (${item.color}, ${item.size}) x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
+      `${item.name} (${item.color}, ${item.size}) x${item.quantity} - ${formatPrice(item.price * item.quantity)}`
     ).join('\n');
 
     const orderSummary = `
-🛍️ *URBAN.CO ORDER CONFIRMATION*
+🛍️ *ROCK COUNTY ORDER CONFIRMATION*
 
 📋 *Order ID:* ${orderId}
 
@@ -102,7 +105,7 @@ ${data.country}
 🛒 *Order Items:*
 ${orderItems}
 
-💰 *Total: $${totalPrice.toFixed(2)}*
+💰 *Total: ${formatPrice(totalPrice)}*
 
 Thank you for your order! We'll contact you soon to confirm your purchase.
     `;
@@ -119,29 +122,21 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
 
   return (
     <div ref={pageRef} className="min-h-screen bg-white text-black p-6">
-      {/* Grunge texture overlay */}
-      <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
-        <div className="w-full h-full bg-black" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.8'/%3E%3C/svg%3E")`,
-          backgroundSize: '100px 100px'
-        }} />
-      </div>
-
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
           <button
             onClick={() => navigate("/")}
-            className="text-2xl font-bold tracking-wider hover:underline"
+            className="text-2xl font-bold tracking-wider hover:underline rounded-lg px-4 py-2"
           >
-            ← URBAN.CO
+            ← ROCK COUNTY
           </button>
           <h1 className="text-4xl font-bold tracking-wider">CHECKOUT</h1>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Order Summary */}
-          <div className="border-2 border-black p-8">
+          <div className="border-2 border-black p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-6 tracking-wider">ORDER SUMMARY</h2>
             <div className="space-y-4 mb-6">
               {cartItems.map((item) => (
@@ -150,7 +145,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-16 h-16 object-cover border border-black"
+                      className="w-16 h-16 object-cover border border-black rounded-md"
                     />
                     <div>
                       <h3 className="font-bold text-sm">{item.name}</h3>
@@ -158,20 +153,20 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                       <p className="text-sm">Qty: {item.quantity}</p>
                     </div>
                   </div>
-                  <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="font-bold">{formatPrice(item.price * item.quantity)}</p>
                 </div>
               ))}
             </div>
             <div className="border-t-2 border-black pt-4">
               <div className="flex justify-between items-center text-xl font-bold">
                 <span>TOTAL:</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>{formatPrice(totalPrice)}</span>
               </div>
             </div>
           </div>
 
           {/* Checkout Form */}
-          <div ref={formRef} className="border-2 border-black p-8">
+          <div ref={formRef} className="border-2 border-black p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-6 tracking-wider">SHIPPING DETAILS</h2>
             
             <Form {...form}>
@@ -184,7 +179,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                       <FormItem className="form-item">
                         <FormLabel className="font-bold tracking-wider">FIRST NAME</FormLabel>
                         <FormControl>
-                          <Input {...field} className="border-black" />
+                          <Input {...field} className="border-black rounded-md" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -197,7 +192,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                       <FormItem className="form-item">
                         <FormLabel className="font-bold tracking-wider">LAST NAME</FormLabel>
                         <FormControl>
-                          <Input {...field} className="border-black" />
+                          <Input {...field} className="border-black rounded-md" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -212,7 +207,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                     <FormItem className="form-item">
                       <FormLabel className="font-bold tracking-wider">EMAIL</FormLabel>
                       <FormControl>
-                        <Input {...field} type="email" className="border-black" />
+                        <Input {...field} type="email" className="border-black rounded-md" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -226,7 +221,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                     <FormItem className="form-item">
                       <FormLabel className="font-bold tracking-wider">PHONE</FormLabel>
                       <FormControl>
-                        <Input {...field} className="border-black" />
+                        <Input {...field} className="border-black rounded-md" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -240,7 +235,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                     <FormItem className="form-item">
                       <FormLabel className="font-bold tracking-wider">ADDRESS</FormLabel>
                       <FormControl>
-                        <Input {...field} className="border-black" />
+                        <Input {...field} className="border-black rounded-md" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -255,7 +250,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                       <FormItem className="form-item">
                         <FormLabel className="font-bold tracking-wider">CITY</FormLabel>
                         <FormControl>
-                          <Input {...field} className="border-black" />
+                          <Input {...field} className="border-black rounded-md" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -268,7 +263,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                       <FormItem className="form-item">
                         <FormLabel className="font-bold tracking-wider">STATE</FormLabel>
                         <FormControl>
-                          <Input {...field} className="border-black" />
+                          <Input {...field} className="border-black rounded-md" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -284,7 +279,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                       <FormItem className="form-item">
                         <FormLabel className="font-bold tracking-wider">COUNTRY</FormLabel>
                         <FormControl>
-                          <Input {...field} className="border-black" />
+                          <Input {...field} className="border-black rounded-md" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -297,7 +292,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
                       <FormItem className="form-item">
                         <FormLabel className="font-bold tracking-wider">ZIP CODE</FormLabel>
                         <FormControl>
-                          <Input {...field} className="border-black" />
+                          <Input {...field} className="border-black rounded-md" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -307,7 +302,7 @@ Thank you for your order! We'll contact you soon to confirm your purchase.
 
                 <Button
                   type="submit"
-                  className="w-full bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold tracking-wider py-4 text-lg"
+                  className="w-full bg-black text-white hover:bg-gray-800 border-2 border-black font-bold tracking-wider py-4 text-lg rounded-lg"
                 >
                   PROCEED TO ORDER
                 </Button>
