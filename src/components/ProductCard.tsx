@@ -57,10 +57,14 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
     }
   }, []);
 
+  const formatPrice = (price: number) => {
+    return `₦${price.toLocaleString()}`;
+  };
+
   return (
     <div
       ref={cardRef}
-      className="product-card cursor-pointer border border-black bg-white hover:bg-black hover:text-white transition-colors duration-300 group"
+      className="product-card cursor-pointer border-2 border-black bg-white hover:bg-black hover:text-white transition-colors duration-500 group shadow-lg"
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -77,10 +81,15 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
         <h3 className="text-xl font-bold mb-2 tracking-wider">
           {product.name}
         </h3>
-        <p className="text-lg font-medium">${product.price}</p>
-        <p className="text-sm mt-2 opacity-70">
+        <p className="text-lg font-bold mb-2">{formatPrice(product.price)}</p>
+        <p className="text-sm opacity-70 group-hover:opacity-90 transition-opacity">
           {product.description}
         </p>
+        <div className="mt-4 pt-4 border-t border-gray-200 group-hover:border-gray-600">
+          <p className="text-xs tracking-wide font-medium">
+            Available in {product.colors.length} colors • {product.sizes.length} sizes
+          </p>
+        </div>
       </div>
     </div>
   );

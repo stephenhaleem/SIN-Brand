@@ -5,6 +5,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/Cart";
 import ProductModal from "@/components/ProductModal";
+import Gallery from "@/components/Gallery";
+import Newsletter from "@/components/Newsletter";
+import Footer from "@/components/Footer";
 import { Product } from "@/types/product";
 import { useCart } from "@/hooks/useCart";
 
@@ -162,6 +165,7 @@ const Index = () => {
           <nav className="hidden md:flex gap-6">
             <a href="#" className="font-medium hover:text-gray-600 transition-colors">Home</a>
             <a href="#shop" className="font-medium hover:text-gray-600 transition-colors">Shop</a>
+            <a href="#gallery" className="font-medium hover:text-gray-600 transition-colors">Gallery</a>
           </nav>
           <button
             onClick={() => setIsCartOpen(true)}
@@ -180,30 +184,33 @@ const Index = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative z-10 py-20 px-6 text-center border-b border-black">
-        <h2 className="text-6xl md:text-8xl font-bold mb-4 tracking-wider" style={{ fontFamily: 'serif' }}>
+      <section className="relative z-10 py-32 px-6 text-center border-b border-black bg-gradient-to-b from-white to-gray-50">
+        <h2 className="text-6xl md:text-8xl font-bold mb-6 tracking-wider" style={{ fontFamily: 'serif' }}>
           ROCK
         </h2>
-        <p className="text-xl md:text-2xl font-light tracking-widest mb-8">
+        <p className="text-xl md:text-2xl font-light tracking-widest mb-8 text-gray-700">
           COUNTY COLLECTION
         </p>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+        <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
           Discover a curated selection of timeless designs and modern trends crafted to elevate your wardrobe. 
           From statement pieces to everyday essentials, find the perfect fit that defines your unique style.
         </p>
         <button 
           onClick={() => document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-black text-white px-8 py-3 hover:bg-white hover:text-black border border-black transition-colors font-bold tracking-wider"
+          className="bg-black text-white px-12 py-4 hover:bg-white hover:text-black border-2 border-black transition-colors font-bold tracking-wider text-lg"
         >
-          SHOP →
+          SHOP NOW →
         </button>
       </section>
 
       {/* Products Grid */}
-      <section id="shop" ref={productsRef} className="relative z-10 py-20 px-6">
-        <h3 className="text-4xl font-bold text-center mb-16 tracking-wider">
-          Top Picks
+      <section id="shop" ref={productsRef} className="relative z-10 py-24 px-6">
+        <h3 className="text-4xl font-bold text-center mb-4 tracking-wider">
+          Featured Collection
         </h3>
+        <p className="text-center text-gray-600 mb-16 text-lg">
+          Handpicked items that define our brand
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {products.map((product) => (
             <ProductCard
@@ -215,12 +222,23 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <div id="gallery">
+        <Gallery />
+      </div>
+
+      {/* Newsletter Section */}
+      <Newsletter />
+
       {/* Limited Time Banner */}
-      <div className="relative z-10 py-4 bg-black text-white overflow-hidden border-t border-black">
+      <div className="relative z-10 py-4 bg-gray-900 text-white overflow-hidden">
         <div className="marquee-text whitespace-nowrap text-lg font-medium tracking-wider">
-          Limited Time ✱ Limited Time ✱ Limited Time ✱ Limited Time ✱ Limited Time ✱
+          Limited Time ✱ Free Shipping on Orders Over ₦50,000 ✱ Limited Time ✱ Free Shipping on Orders Over ₦50,000 ✱
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
 
       {/* Cart Sidebar */}
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
