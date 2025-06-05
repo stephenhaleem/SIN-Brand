@@ -5,6 +5,7 @@ import { X, Plus, Minus } from "lucide-react";
 import { Product } from "@/types/product";
 import { useCart } from "@/hooks/useCart";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductModalProps {
   product: Product;
@@ -17,6 +18,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
+  const { toast } = useToast();
   
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -35,6 +37,16 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
   }, []);
 
   const handleAddToCart = () => {
+    console.log('Adding to cart:', {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[selectedImage],
+      color: selectedColor,
+      size: selectedSize,
+      quantity,
+    });
+
     addToCart({
       productId: product.id,
       name: product.name,
@@ -44,6 +56,12 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
       size: selectedSize,
       quantity,
     });
+
+    toast({
+      title: "Added to cart!",
+      description: `${product.name} has been added to your cart.`,
+    });
+
     onClose();
   };
 
@@ -61,6 +79,10 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         onComplete: onClose
       });
     }
+  };
+
+  const formatPrice = (price: number) => {
+    return `₦${price.toLocaleString()}`;
   };
 
   return (
@@ -116,13 +138,13 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
           {/* Product Details */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-bold mb-2">${product.price}</h3>
+              <h3 className="text-xl font-bold mb-2">{formatPrice(product.price)}</h3>
               <p className="text-gray-600">{product.description}</p>
             </div>
 
             {/* Color Selection */}
             <div>
-              <h4 className="font-bold mb-3 tracking-wider">COLOR</h4>
+              <h4 className="font-bold mb-3 tracking-wider">COLOR *</h4>
               <div className="flex gap-2">
                 {product.colors.map((color) => (
                   <button
@@ -142,8 +164,8 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
 
             {/* Size Selection */}
             <div>
-              <h4 className="font-bold mb-3 tracking-wider">SIZE</h4>
-              <div className="flex gap-2">
+              <h4 className="font-bold mb-3 tracking-wider">SIZE *</h4>
+              <div className="flex gap-2 flex-wrap">
                 {product.sizes.map((size) => (
                   <button
                     key={size}
@@ -162,7 +184,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
 
             {/* Quantity */}
             <div>
-              <h4 className="font-bold mb-3 tracking-wider">QUANTITY</h4>
+              <h4 className="font-bold mb-3 tracking-wider">QUANTITY *</h4>
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -183,9 +205,9 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
             {/* Add to Cart */}
             <Button
               onClick={handleAddToCart}
-              className="w-full bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold tracking-wider py-4"
+              className="w-full bg-black text-white hover:bg-gray-800 border-2 border-black font-bold tracking-wider py-4"
             >
-              ADD TO CART
+              Add to Cart
             </Button>
           </div>
         </div>

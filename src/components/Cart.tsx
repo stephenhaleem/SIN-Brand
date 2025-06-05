@@ -38,6 +38,10 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
     navigate("/checkout");
   };
 
+  const formatPrice = (price: number) => {
+    return `₦${price.toLocaleString()}`;
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -55,7 +59,7 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
       >
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-black">
-          <h2 className="text-2xl font-bold tracking-wider">CART</h2>
+          <h2 className="text-2xl font-bold tracking-wider">Cart ({cartItems.length} Items)</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-black hover:text-white transition-colors border border-black"
@@ -85,7 +89,7 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
                       <p className="text-sm text-gray-600 mt-1">
                         {item.color} • {item.size}
                       </p>
-                      <p className="font-bold mt-2">${item.price}</p>
+                      <p className="font-bold mt-2">{formatPrice(item.price)}</p>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
@@ -111,7 +115,7 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
                         <Plus size={16} />
                       </button>
                     </div>
-                    <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="font-bold">{formatPrice(item.price * item.quantity)}</p>
                   </div>
                 </div>
               ))}
@@ -122,15 +126,29 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
         {/* Footer */}
         {cartItems.length > 0 && (
           <div className="border-t border-black p-6 space-y-4">
+            <div className="space-y-2">
+              <div className="flex justify-between text-lg">
+                <span>Subtotal:</span>
+                <span>{formatPrice(totalPrice)}</span>
+              </div>
+              <p className="text-sm text-gray-600">Taxes and shipping are calculated at checkout.</p>
+            </div>
             <div className="flex justify-between items-center text-xl font-bold">
               <span>TOTAL:</span>
-              <span>${totalPrice.toFixed(2)}</span>
+              <span>{formatPrice(totalPrice)}</span>
             </div>
             <Button
               onClick={handleCheckout}
-              className="w-full bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold tracking-wider py-4"
+              className="w-full bg-black text-white hover:bg-gray-800 border-2 border-black font-bold tracking-wider py-4"
             >
-              CHECKOUT
+              Checkout
+            </Button>
+            <Button
+              variant="outline"
+              onClick={onClose}
+              className="w-full border-2 border-black hover:bg-black hover:text-white font-bold tracking-wider py-2"
+            >
+              View Cart
             </Button>
           </div>
         )}
