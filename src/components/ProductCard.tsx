@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Product } from "@/types/product";
@@ -80,12 +81,12 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
   return (
     <div
       ref={cardRef}
-      className="product-card cursor-pointer border border-black/10 bg-white hover:bg-black transition-all duration-700 group shadow-md transform perspective-1000 max-w-[280px]"
+      className="product-card cursor-pointer border border-black/10 bg-white hover:bg-black transition-all duration-700 group shadow-md transform perspective-1000 w-full max-w-[300px] sm:max-w-[280px] mx-auto rounded-lg"
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="aspect-square overflow-hidden relative">
+      <div className="aspect-square overflow-hidden relative rounded-t-lg">
         <img
           ref={imageRef}
           src={product.images[0]}

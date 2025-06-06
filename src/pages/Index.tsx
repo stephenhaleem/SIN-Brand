@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,7 +10,7 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { Product } from "@/types/product";
 import { useCart } from "@/contexts/CartContext";
-import { ShoppingBag } from "lucide-react"; // Add this import at the top with other imports
+import { ShoppingBag } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -157,17 +158,17 @@ const Index = () => {
       {/* Header */}
       <header
         ref={headerRef}
-        className="p-6 flex justify-between items-center border-b-2 border-black bg-white"
+        className="p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-white"
       >
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-black text-white flex items-center justify-center rounded-lg">
-            <span className="font-bold text-xl">R</span>
+        <div className="flex items-center gap-2 md:gap-4">
+          <div className="w-8 h-8 md:w-12 md:h-12 bg-black text-white flex items-center justify-center rounded-lg">
+            <span className="font-bold text-sm md:text-xl">R</span>
           </div>
-          <h1 className="text-4xl font-normal tracking-wider text-black">
+          <h1 className="text-2xl md:text-4xl font-normal tracking-wider text-black">
             SIN
           </h1>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <nav className="hidden md:flex gap-8">
             <a
               href="#"
@@ -192,9 +193,9 @@ const Index = () => {
             onClick={() => setIsCartOpen(true)}
             className="relative p-2 border-2 border-black hover:bg-black hover:text-white transition-all duration-300 rounded-lg"
           >
-            <ShoppingBag size={20} />
+            <ShoppingBag size={16} className="md:w-5 md:h-5" />
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 w-5 h-5 bg-black text-white text-xs font-bold rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 w-4 h-4 md:w-5 md:h-5 bg-black text-white text-xs font-bold rounded-full flex items-center justify-center">
                 {totalItems}
               </span>
             )}
@@ -205,9 +206,9 @@ const Index = () => {
       {/* Scrolling Marquee */}
       <div
         ref={marqueeRef}
-        className="py-4 bg-black text-white overflow-hidden"
+        className="py-2 md:py-4 bg-black text-white overflow-hidden"
       >
-        <div className="marquee-text whitespace-nowrap text-2xl font-bold tracking-wider">
+        <div className="marquee-text whitespace-nowrap text-lg md:text-2xl font-bold tracking-wider">
           ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★
           REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★ REVENGE ★ SIN
           ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★
@@ -219,15 +220,15 @@ const Index = () => {
       <section className="relative min-h-screen bg-gray-100">
         {/* Marquee Text Overlay */}
         <div className="absolute inset-0 flex items-center pointer-events-none overflow-hidden">
-          <div className="whitespace-nowrap text-[200px] font-bold text-black/5 tracking-wider">
+          <div className="whitespace-nowrap text-[80px] md:text-[200px] font-bold text-black/5 tracking-wider">
             SIN ◆ REVENGE ◆ SIN ◆ REVENGE ☺ SIN
           </div>
         </div>
 
-        <div className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between relative z-10">
+        <div className="container mx-auto px-4 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between relative z-10">
           {/* Text Content */}
-          <div className="md:w-1/2 mb-12 md:mb-0">
-            <p className="font-shadows text-xl md:text-2xl lg:text-5xl mb-6 text-gray-600 leading-relaxed max-w-lg">
+          <div className="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
+            <p className="font-shadows text-lg md:text-2xl lg:text-5xl mb-6 text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
               Discover a curated selection of timeless designs and modern trends
               crafted to elevate your wardrobe. From statement pieces to
               everyday essentials, find the perfect fit that defines your unique
@@ -239,42 +240,42 @@ const Index = () => {
                   .getElementById("shop")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="bg-black text-white px-8 py-3 flex items-center gap-2 hover:bg-white/90 hover:text-black transition-all duration-300"
+              className="bg-black text-white px-6 md:px-8 py-3 flex items-center gap-2 hover:bg-white/90 hover:text-black transition-all duration-300 mx-auto md:mx-0 rounded-lg"
             >
               SHOP <span className="text-lg">→</span>
             </button>
           </div>
 
           {/* Hero Image */}
-          <div className="md:w-1/2">
-            <div className="aspect-[3/4] relative w-full max-w-md mx-auto">
+          <div className="w-full md:w-1/2">
+            <div className="aspect-[3/4] relative w-full max-w-sm md:max-w-md mx-auto">
               <img
                 src="/images/ff.png"
                 alt="Hero"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-lg"
               />
               {/* Decorative Corner */}
-              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-black"></div>
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-black"></div>
+              <div className="absolute top-4 left-4 w-6 md:w-8 h-6 md:h-8 border-l-2 border-t-2 border-black"></div>
+              <div className="absolute bottom-4 right-4 w-6 md:w-8 h-6 md:h-8 border-r-2 border-b-2 border-black"></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Products Grid */}
-      <section id="shop" ref={productsRef} className="py-20 px-6 bg-gray-50">
-        <div className="text-center mb-16">
-          <h3 className="font-shadows text-3xl font-bold mb-4 tracking-wider text-black">
+      <section id="shop" ref={productsRef} className="py-10 md:py-20 px-4 md:px-6 bg-gray-50">
+        <div className="text-center mb-8 md:mb-16">
+          <h3 className="font-shadows text-2xl md:text-3xl font-bold mb-4 tracking-wider text-black">
             COLLECTION
           </h3>
-          <div className="w-32 h-1 bg-black mx-auto mb-8"></div>
-          <p className="text-center text-gray-600 mb-16 text-xl max-w-2xl mx-auto">
+          <div className="w-24 md:w-32 h-1 bg-black mx-auto mb-6 md:mb-8"></div>
+          <p className="text-center text-gray-600 mb-8 md:mb-16 text-lg md:text-xl max-w-2xl mx-auto px-4">
             Handpicked pieces forged in the spirit of rebellion. Each item
             carries the essence of streetwear.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto justify-items-center">
           {products.map((product) => (
             <ProductCard
               key={product.id}
