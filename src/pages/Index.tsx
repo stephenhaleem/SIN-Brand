@@ -27,7 +27,7 @@ const products: Product[] = [
     id: "2",
     name: "Skull Cap",
     price: 12000,
-    images: ["public/images/tee2.jpg"],
+    images: ["/images/tee2.jpg"],
     colors: ["Black", "White"],
     sizes: ["One Size"],
     description: "Classic skull cap with embroidered logo",
@@ -36,7 +36,7 @@ const products: Product[] = [
     id: "3",
     name: "Skull Tee (Black)",
     price: 29000,
-    images: ["public/images/tee3.jpg"],
+    images: ["/images/tee3.jpg"],
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Bold skull graphic tee with grunge aesthetics",
@@ -45,7 +45,7 @@ const products: Product[] = [
     id: "4",
     name: "Rock Tee (Black)",
     price: 25000,
-    images: ["public/images/tee4.jpg"],
+    images: ["/images/tee4.jpg"],
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL"],
     description: "Statement rock tee with edgy design",
@@ -63,7 +63,7 @@ const products: Product[] = [
     id: "6",
     name: "Grunge Jacket",
     price: 65000,
-    images: ["public/images/ff.jpg"],
+    images: ["/images/ff.jpg"],
     colors: ["Black", "Charcoal"],
     sizes: ["S", "M", "L", "XL"],
     description: "Distressed jacket with authentic grunge appeal",
@@ -249,7 +249,7 @@ const Index = () => {
           <div className="md:w-1/2">
             <div className="aspect-[3/4] relative w-full max-w-md mx-auto">
               <img
-                src="public/images/ff.png"
+                src="/images/ff.png"
                 alt="Hero"
                 className="w-full h-full object-cover"
               />

@@ -1,14 +1,14 @@
 const Gallery = () => {
   const leftImages = [
-    "public/images/full2.jpg",
-    "public/images/full3.jpg",
-    "public/images/full5.jpg",
+    "/images/full2.jpg",
+    "/images/full3.jpg",
+    "/images/full5.jpg",
   ];
 
   const rightImages = [
-    "public/images/full6.jpg",
-    "public/images/full7.jpg",
-    "public/images/full2.jpg",
+    "/images/full6.jpg",
+    "/images/full7.jpg",
+    "/images/full2.jpg",
   ];
 
   return (
