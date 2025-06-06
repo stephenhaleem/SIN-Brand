@@ -54,7 +54,7 @@ const products: Product[] = [
     id: "5",
     name: "County Hoodie",
     price: 45000,
-    images: ["public/images/full1.jpg"],
+    images: ["/images/full1.jpg"],
     colors: ["Black", "Gray"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Premium hoodie with county branding",
