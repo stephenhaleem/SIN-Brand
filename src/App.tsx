@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,25 +7,55 @@ import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <CartProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </CartProvider>
-  </QueryClientProvider>
-);
+function isDesktop() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(pointer: fine) and (hover: hover)").matches;
+}
+
+function App() {
+  useEffect(() => {
+    if (!isDesktop()) return;
+
+    const lenis = new Lenis({
+      duration: 4,
+      easing: (t: number) => 1 - Math.pow(1 - t, 5),
+      smoothWheel: true,
+      wheelMultiplier: 0.5,
+      touchMultiplier: 1.2,
+      syncTouch: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <CartProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </CartProvider>
+    </QueryClientProvider>
+  );
+}
 
 export default App;

@@ -9,6 +9,7 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { Product } from "@/types/product";
 import { useCart } from "@/contexts/CartContext";
+import { ShoppingBag } from "lucide-react"; // Add this import at the top with other imports
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,74 +18,56 @@ const products: Product[] = [
     id: "1",
     name: "Villain Shorts",
     price: 39000,
-    images: [
-      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500",
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500"
-    ],
+    images: ["/images/tee1.jpg"],
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL"],
-    description: "Premium streetwear shorts with skull graphic"
+    description: "Premium streetwear shorts with skull graphic",
   },
   {
     id: "2",
     name: "Skull Cap",
     price: 12000,
-    images: [
-      "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=500",
-      "https://images.unsplash.com/photo-1556306535-38febf6782e7?w=500"
-    ],
+    images: ["public/images/tee2.jpg"],
     colors: ["Black", "White"],
     sizes: ["One Size"],
-    description: "Classic skull cap with embroidered logo"
+    description: "Classic skull cap with embroidered logo",
   },
   {
     id: "3",
     name: "Skull Tee (Black)",
     price: 29000,
-    images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500",
-      "https://images.unsplash.com/photo-1583743814966-8936f37f8c2b?w=500"
-    ],
+    images: ["public/images/tee3.jpg"],
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    description: "Bold skull graphic tee with grunge aesthetics"
+    description: "Bold skull graphic tee with grunge aesthetics",
   },
   {
     id: "4",
     name: "Rock Tee (Black)",
     price: 25000,
-    images: [
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500",
-      "https://images.unsplash.com/photo-1622445275576-721325763afe?w=500"
-    ],
+    images: ["public/images/tee4.jpg"],
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL"],
-    description: "Statement rock tee with edgy design"
+    description: "Statement rock tee with edgy design",
   },
   {
     id: "5",
     name: "County Hoodie",
     price: 45000,
-    images: [
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500",
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500"
-    ],
+    images: ["public/images/full1.jpg"],
     colors: ["Black", "Gray"],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    description: "Premium hoodie with county branding"
+    description: "Premium hoodie with county branding",
   },
   {
     id: "6",
     name: "Grunge Jacket",
     price: 65000,
-    images: [
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500",
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500"
-    ],
+    images: ["public/images/ff.jpg"],
     colors: ["Black", "Charcoal"],
     sizes: ["S", "M", "L", "XL"],
-    description: "Distressed jacket with authentic grunge appeal"
-  }
+    description: "Distressed jacket with authentic grunge appeal",
+  },
 ];
 
 const Index = () => {
@@ -99,7 +82,8 @@ const Index = () => {
   useEffect(() => {
     // Header animation
     if (headerRef.current) {
-      gsap.fromTo(headerRef.current, 
+      gsap.fromTo(
+        headerRef.current,
         { opacity: 0, y: -50 },
         { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
       );
@@ -107,42 +91,45 @@ const Index = () => {
 
     // Hero section animation
     if (heroRef.current) {
-      const heroTitle = heroRef.current.querySelector('.hero-title');
-      const heroSubtitle = heroRef.current.querySelector('.hero-subtitle');
-      const heroDesc = heroRef.current.querySelector('.hero-desc');
-      const heroButton = heroRef.current.querySelector('.hero-button');
+      const heroTitle = heroRef.current.querySelector(".hero-title");
+      const heroSubtitle = heroRef.current.querySelector(".hero-subtitle");
+      const heroDesc = heroRef.current.querySelector(".hero-desc");
+      const heroButton = heroRef.current.querySelector(".hero-button");
 
-      gsap.fromTo([heroTitle, heroSubtitle, heroDesc, heroButton],
+      gsap.fromTo(
+        [heroTitle, heroSubtitle, heroDesc, heroButton],
         { opacity: 0, y: 50 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.8, 
-          stagger: 0.2, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
           ease: "power3.out",
-          delay: 0.3
+          delay: 0.3,
         }
       );
     }
 
     // Marquee animation
     if (marqueeRef.current) {
-      const marqueeText = marqueeRef.current.querySelector('.marquee-text');
+      const marqueeText = marqueeRef.current.querySelector(".marquee-text");
       if (marqueeText) {
-        gsap.set(marqueeText, { x: '100%' });
+        gsap.set(marqueeText, { x: "100%" });
         gsap.to(marqueeText, {
-          x: '-100%',
+          x: "-100%",
           duration: 20,
-          ease: 'none',
-          repeat: -1
+          ease: "none",
+          repeat: -1,
         });
       }
     }
 
     // Products grid animation
     if (productsRef.current) {
-      const productCards = productsRef.current.querySelectorAll('.product-card');
-      gsap.fromTo(productCards,
+      const productCards =
+        productsRef.current.querySelectorAll(".product-card");
+      gsap.fromTo(
+        productCards,
         { opacity: 0, y: 50 },
         {
           opacity: 1,
@@ -154,48 +141,60 @@ const Index = () => {
             trigger: productsRef.current,
             start: "top 70%",
             end: "bottom 30%",
-            toggleActions: "play none none reverse"
-          }
+            toggleActions: "play none none reverse",
+          },
         }
       );
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
-      <header ref={headerRef} className="p-6 flex justify-between items-center border-b-2 border-black bg-white">
+      <header
+        ref={headerRef}
+        className="p-6 flex justify-between items-center border-b-2 border-black bg-white"
+      >
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-black text-white flex items-center justify-center rounded-lg">
             <span className="font-bold text-xl">R</span>
           </div>
-          <h1 className="text-4xl font-bold tracking-wider text-black">
-            Rock County
+          <h1 className="text-4xl font-normal tracking-wider text-black">
+            SIN
           </h1>
         </div>
         <div className="flex items-center gap-6">
           <nav className="hidden md:flex gap-8">
-            <a href="#" className="font-medium hover:text-gray-600 transition-all duration-300">
+            <a
+              href="#"
+              className="font-medium hover:text-gray-600 transition-all duration-300"
+            >
               Home
             </a>
-            <a href="#shop" className="font-medium hover:text-gray-600 transition-all duration-300">
+            <a
+              href="#shop"
+              className="font-medium hover:text-gray-600 transition-all duration-300"
+            >
               Shop
             </a>
-            <a href="#gallery" className="font-medium hover:text-gray-600 transition-all duration-300">
+            <a
+              href="#gallery"
+              className="font-medium hover:text-gray-600 transition-all duration-300"
+            >
               Gallery
             </a>
           </nav>
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative p-3 border-2 border-black hover:bg-black hover:text-white transition-all duration-300 rounded-lg"
+            className="relative p-2 border-2 border-black hover:bg-black hover:text-white transition-all duration-300 rounded-lg"
           >
-            <span className="text-sm font-bold tracking-wider">CART ({totalItems})</span>
+            <ShoppingBag size={20} />
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold">
+              <span className="absolute -top-2 -right-2 w-5 h-5 bg-black text-white text-xs font-bold rounded-full flex items-center justify-center">
                 {totalItems}
               </span>
             )}
@@ -204,44 +203,77 @@ const Index = () => {
       </header>
 
       {/* Scrolling Marquee */}
-      <div ref={marqueeRef} className="py-4 bg-black text-white overflow-hidden">
+      <div
+        ref={marqueeRef}
+        className="py-4 bg-black text-white overflow-hidden"
+      >
         <div className="marquee-text whitespace-nowrap text-2xl font-bold tracking-wider">
-          ★ ROCK COUNTY ★ AUTHENTIC STREETWEAR ★ ROCK COUNTY ★ AUTHENTIC STREETWEAR ★
+          ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★
+          REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★ REVENGE ★ SIN
+          ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★
+          SIN ★ REVENGE ★ SIN ★
         </div>
       </div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="py-20 px-6 text-center bg-white">
-        <h2 className="hero-title text-8xl md:text-9xl font-bold mb-4 tracking-wider text-black">
-          ROCK
-        </h2>
-        <p className="hero-subtitle text-3xl md:text-4xl font-light tracking-widest mb-8 text-gray-600">
-          COUNTY REBELLION
-        </p>
-        <p className="hero-desc text-gray-700 max-w-3xl mx-auto mb-12 text-xl leading-relaxed">
-          Embrace the darkness. Channel your inner rebel with our exclusive collection of streetwear 
-          that speaks to the soul of the underground.
-        </p>
-        <button 
-          onClick={() => document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })}
-          className="hero-button bg-black text-white px-12 py-4 hover:bg-gray-800 transition-all duration-300 font-bold tracking-wider text-xl rounded-lg"
-        >
-          SHOP NOW →
-        </button>
+      <section className="relative min-h-screen bg-gray-100">
+        {/* Marquee Text Overlay */}
+        <div className="absolute inset-0 flex items-center pointer-events-none overflow-hidden">
+          <div className="whitespace-nowrap text-[200px] font-bold text-black/5 tracking-wider">
+            SIN ◆ REVENGE ◆ SIN ◆ REVENGE ☺ SIN
+          </div>
+        </div>
+
+        <div className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between relative z-10">
+          {/* Text Content */}
+          <div className="md:w-1/2 mb-12 md:mb-0">
+            <p className="font-shadows text-xl md:text-2xl lg:text-5xl mb-6 text-gray-600 leading-relaxed max-w-lg">
+              Discover a curated selection of timeless designs and modern trends
+              crafted to elevate your wardrobe. From statement pieces to
+              everyday essentials, find the perfect fit that defines your unique
+              style.
+            </p>
+            <button
+              onClick={() =>
+                document
+                  .getElementById("shop")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="bg-black text-white px-8 py-3 flex items-center gap-2 hover:bg-white/90 hover:text-black transition-all duration-300"
+            >
+              SHOP <span className="text-lg">→</span>
+            </button>
+          </div>
+
+          {/* Hero Image */}
+          <div className="md:w-1/2">
+            <div className="aspect-[3/4] relative w-full max-w-md mx-auto">
+              <img
+                src="public/images/ff.png"
+                alt="Hero"
+                className="w-full h-full object-cover"
+              />
+              {/* Decorative Corner */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-black"></div>
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-black"></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Products Grid */}
       <section id="shop" ref={productsRef} className="py-20 px-6 bg-gray-50">
         <div className="text-center mb-16">
-          <h3 className="text-6xl font-bold mb-4 tracking-wider text-black">
+          <h3 className="font-shadows text-3xl font-bold mb-4 tracking-wider text-black">
             COLLECTION
           </h3>
           <div className="w-32 h-1 bg-black mx-auto mb-8"></div>
           <p className="text-center text-gray-600 mb-16 text-xl max-w-2xl mx-auto">
-            Handpicked pieces forged in the spirit of rebellion. Each item carries the essence of streetwear.
+            Handpicked pieces forged in the spirit of rebellion. Each item
+            carries the essence of streetwear.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {products.map((product) => (
             <ProductCard
