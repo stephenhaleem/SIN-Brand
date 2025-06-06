@@ -99,3 +99,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom black and white scrollbar for all browsers that support it */
+::-webkit-scrollbar {
+  width: 12px;
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111;
+  border-radius: 8px;
+  border: 2px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #111 #fff;
+}
