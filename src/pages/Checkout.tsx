@@ -154,7 +154,7 @@ ${orderItems}
         <div className="flex items-center justify-between mb-12">
           <button
             onClick={() => navigate("/")}
-            className="font-shadows text-2xl font-bold tracking-wider hover:underline rounded-lg px-4 py-2"
+            className="font-shadows text-2xl font-bold tracking-wider rounded-lg px-4 py-2"
           >
             ← SIN
           </button>
@@ -394,29 +394,11 @@ ${orderItems}
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="zipCode"
-                    render={({ field }) => (
-                      <FormItem className="form-item">
-                        <FormLabel className="font-bold tracking-wider">
-                          ZIP CODE
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            className="border-black rounded-md"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-black text-white hover:bg-gray-800 border-2 border-black font-bold tracking-wider py-4 text-lg rounded-lg"
+                  className="w-full bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold tracking-wider py-4 text-lg rounded-lg"
                 >
                   PROCEED TO ORDER
                 </Button>

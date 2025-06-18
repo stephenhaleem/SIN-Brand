@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Product } from "@/types/product";
@@ -96,7 +95,7 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
         {/* Overlay with clean effect */}
         <div
           ref={overlayRef}
-          className="absolute inset-0 bg-black/0 group-hover:bg-black/30 opacity-0 transition-all duration-300"
+          className="absolute inset-0 bg-black/0 group-hover:bg-black/10 opacity-0 transition-all duration-300"
         />
         {/* Animated corner elements */}
         <div className="absolute top-2 left-2 w-3 h-3 border-l border-t border-black/70 opacity-0 group-hover:border-white/70 group-hover:opacity-100 transition-all duration-300"></div>

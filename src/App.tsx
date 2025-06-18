@@ -22,11 +22,11 @@ function App() {
     if (!isDesktop()) return;
 
     const lenis = new Lenis({
-      duration: 4,
+      duration: 2,
       easing: (t: number) => 1 - Math.pow(1 - t, 5),
       smoothWheel: true,
       wheelMultiplier: 0.5,
-      touchMultiplier: 1.2,
+      touchMultiplier: 1.1,
       syncTouch: true,
     });
 

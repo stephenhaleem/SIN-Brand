@@ -6,6 +6,8 @@ export const countries = [
   { code: "GH", name: "Ghana" },
   { code: "KE", name: "Kenya" },
   { code: "ZA", name: "South Africa" },
+  { code: "UG", name: "Uganda" },
+  { code: "TZ", name: "Tanzania" },
 ] as const;
 
 export type Country = (typeof countries)[number];

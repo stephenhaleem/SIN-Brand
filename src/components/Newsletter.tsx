@@ -46,7 +46,7 @@ const Newsletter = () => {
           />
           <Button
             type="submit"
-            className="bg-white text-black hover:bg-gray-200 border-2 border-white font-bold tracking-wider py-4 px-8 text-lg rounded-lg"
+            className="bg-white text-black hover:bg-black hover:text-white border-2 border-white font-bold tracking-wider py-4 px-8 text-lg rounded-lg"
           >
             JOIN US
           </Button>
