@@ -22,11 +22,11 @@ function App() {
     if (!isDesktop()) return;
 
     const lenis = new Lenis({
-      duration: 2,
+      duration: 0.4, // reduced duration for faster scroll
       easing: (t: number) => 1 - Math.pow(1 - t, 5),
       smoothWheel: true,
-      wheelMultiplier: 0.5,
-      touchMultiplier: 1.1,
+      wheelMultiplier: 1, // increased multiplier for faster wheel scroll
+      touchMultiplier: 1.5, // increased multiplier for faster touch scroll
       syncTouch: true,
     });
 
