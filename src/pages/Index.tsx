@@ -159,7 +159,7 @@ const Index = () => {
       {/* Header */}
       <header
         ref={headerRef}
-        className="relative p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-white"
+        className="relative p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-white z-50"
       >
         <div className="flex items-center gap-2 md:gap-4">
           <div className="w-8 h-8 md:w-12 md:h-12 bg-black text-white flex items-center justify-center rounded-lg">
@@ -194,7 +194,7 @@ const Index = () => {
       {/* Scrolling Marquee */}
       <div
         ref={marqueeRef}
-        className="py-2 md:py-4 bg-black text-white overflow-hidden"
+        className="py-2 md:py-4 bg-black text-white overflow-hidden relative z-10"
       >
         <div className="marquee-text whitespace-nowrap text-lg md:text-2xl font-bold tracking-wider">
           ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★
