@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,6 +7,8 @@ import ProductModal from "@/components/ProductModal";
 import Gallery from "@/components/Gallery";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
+import MobileMenu from "@/components/MobileMenu";
 import { Product } from "@/types/product";
 import { useCart } from "@/contexts/CartContext";
 import { ShoppingBag } from "lucide-react";
@@ -158,7 +159,7 @@ const Index = () => {
       {/* Header */}
       <header
         ref={headerRef}
-        className="p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-white"
+        className="relative p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-white"
       >
         <div className="flex items-center gap-2 md:gap-4">
           <div className="w-8 h-8 md:w-12 md:h-12 bg-black text-white flex items-center justify-center rounded-lg">
@@ -168,30 +169,17 @@ const Index = () => {
             SIN
           </h1>
         </div>
+
+        {/* Desktop Navigation */}
+        <Navigation />
+
         <div className="flex items-center gap-4 md:gap-6">
-          <nav className="hidden md:flex gap-8">
-            <a
-              href="#"
-              className="font-medium hover:text-gray-600 transition-all duration-300"
-            >
-              Home
-            </a>
-            <a
-              href="#shop"
-              className="font-medium hover:text-gray-600 transition-all duration-300"
-            >
-              Shop
-            </a>
-            <a
-              href="#gallery"
-              className="font-medium hover:text-gray-600 transition-all duration-300"
-            >
-              Gallery
-            </a>
-          </nav>
+          {/* Mobile Menu */}
+          <MobileMenu />
+
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative p-2 border-2 border-black hover:bg-black hover:text-white transition-all duration-300 rounded-lg"
+            className="relative p-2 border-2 border-black hover:bg-black hover:text-white transition-all duration-300 rounded-md"
           >
             <ShoppingBag size={16} className="md:w-5 md:h-5" />
             {totalItems > 0 && (
