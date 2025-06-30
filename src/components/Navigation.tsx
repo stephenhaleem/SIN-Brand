@@ -1,14 +1,6 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
 
 const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -61,32 +53,52 @@ const Navigation = () => {
     }
   ];
 
+  const handleMouseEnter = (title: string) => {
+    setActiveDropdown(title);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveDropdown(null);
+  };
+
   return (
-    <nav className="hidden lg:flex">
-      <NavigationMenu>
-        <NavigationMenuList className="space-x-1">
-          {navigationItems.map((section) => (
-            <NavigationMenuItem key={section.title}>
-              <NavigationMenuTrigger className="bg-transparent hover:bg-gray-100 data-[state=open]:bg-gray-100 text-black font-medium tracking-wider text-sm px-4 py-2 rounded-md transition-colors">
-                {section.title}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white border border-gray-200 shadow-lg rounded-md p-0 min-w-[300px]">
+    <nav className="hidden lg:flex relative">
+      <div className="flex space-x-1">
+        {navigationItems.map((section) => (
+          <div
+            key={section.title}
+            className="relative"
+            onMouseEnter={() => handleMouseEnter(section.title)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button className="bg-transparent hover:bg-gray-100 text-black font-medium tracking-wider text-sm px-4 py-2 rounded-md transition-colors flex items-center gap-1">
+              {section.title}
+              <ChevronDown 
+                size={14} 
+                className={`transition-transform duration-200 ${
+                  activeDropdown === section.title ? 'rotate-180' : ''
+                }`} 
+              />
+            </button>
+            
+            {activeDropdown === section.title && (
+              <div className="absolute top-full left-0 bg-white border border-gray-200 shadow-lg rounded-md p-0 min-w-[300px] z-50">
                 <div className="grid gap-1 p-2">
                   {section.items.map((item) => (
-                    <NavigationMenuLink
+                    <a
                       key={item.title}
                       href={item.href}
                       className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black rounded-md transition-colors"
                     >
                       {item.title}
-                    </NavigationMenuLink>
+                    </a>
                   ))}
                 </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          ))}
-        </NavigationMenuList>
-      </NavigationMenu>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </nav>
   );
 };
