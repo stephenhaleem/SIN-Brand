@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 
@@ -7,13 +6,11 @@ const HeroSection = () => {
 
   useEffect(() => {
     if (heroRef.current) {
-      const heroTitle = heroRef.current.querySelector(".hero-title");
-      const heroSubtitle = heroRef.current.querySelector(".hero-subtitle");
       const heroDesc = heroRef.current.querySelector(".hero-desc");
       const heroButton = heroRef.current.querySelector(".hero-button");
 
       gsap.fromTo(
-        [heroTitle, heroSubtitle, heroDesc, heroButton],
+        [heroDesc, heroButton].filter(Boolean), // Only animate non-null elements
         { opacity: 0, y: 50 },
         {
           opacity: 1,
@@ -35,13 +32,15 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div ref={heroRef} className="container mx-auto px-4 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between relative z-10">
+      <div
+        ref={heroRef}
+        className="container mx-auto px-4 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between relative z-10"
+      >
         <div className="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
           <p className="hero-desc font-shadows text-lg md:text-2xl lg:text-5xl mb-6 text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
             Discover a curated selection of timeless designs and modern trends
-            crafted to elevate your wardrobe. From statement pieces to
-            everyday essentials, find the perfect fit that defines your unique
-            style.
+            crafted to elevate your wardrobe. From statement pieces to everyday
+            essentials, find the perfect fit that defines your unique style.
           </p>
           <button
             onClick={() =>
