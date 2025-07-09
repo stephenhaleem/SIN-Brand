@@ -3,7 +3,6 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProductCard from "./ProductCard";
-import ThreeProductCard from "./ThreeProductCard";
 import { Product } from "@/types/product";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -57,18 +56,12 @@ const ProductsSection = ({ products, onProductSelect }: ProductsSectionProps) =>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto justify-items-center">
-        {products.map((product, index) => (
-          <div key={product.id} className="relative group">
-            <ProductCard
-              product={product}
-              onClick={() => onProductSelect(product)}
-            />
-            {index < 3 && (
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none">
-                <ThreeProductCard />
-              </div>
-            )}
-          </div>
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onClick={() => onProductSelect(product)}
+          />
         ))}
       </div>
     </section>

@@ -6,10 +6,9 @@ import HeroSection from "@/components/HeroSection";
 import ProductsSection from "@/components/ProductsSection";
 import Cart from "@/components/Cart";
 import ProductModal from "@/components/ProductModal";
-import EnhancedGallery from "@/components/EnhancedGallery";
+import Gallery from "@/components/Gallery";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
-import ScrollParticles from "@/components/ScrollParticles";
 import { Product } from "@/types/product";
 import { products } from "@/data/products";
 
@@ -19,7 +18,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <ScrollParticles />
       <Header onCartOpen={() => setIsCartOpen(true)} />
       <Marquee />
       <HeroSection />
@@ -29,7 +27,7 @@ const Index = () => {
       />
       
       <div id="gallery">
-        <EnhancedGallery />
+        <Gallery />
       </div>
       
       <Newsletter />
