@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
+import ThreeBackground from "./ThreeBackground";
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -26,6 +27,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen bg-gray-100">
+      <ThreeBackground />
       <div className="absolute inset-0 flex items-center pointer-events-none overflow-hidden">
         <div className="whitespace-nowrap text-[80px] md:text-[200px] font-bold text-black/5 tracking-wider">
           SIN ◆ REVENGE ◆ SIN ◆ REVENGE ☺ SIN
