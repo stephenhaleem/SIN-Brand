@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ShoppingBag } from "lucide-react";
@@ -27,7 +26,7 @@ const Header = ({ onCartOpen }: HeaderProps) => {
   return (
     <header
       ref={headerRef}
-      className="relative p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-white z-50"
+      className="relative p-4 md:p-6 flex justify-between items-center  bg-white z-50"
     >
       <div className="flex items-center gap-2 md:gap-4">
         <div className="w-8 h-8 md:w-12 md:h-12 bg-black text-white flex items-center justify-center rounded-lg">
