@@ -11,6 +11,8 @@ import Footer from "@/components/Footer";
 import { Product } from "@/types/product";
 import { useCart } from "@/contexts/CartContext";
 import { ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +25,7 @@ const products: Product[] = [
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL"],
     description: "Premium streetwear shorts with skull graphic",
+    category: "shorts",
   },
   {
     id: "2",
@@ -32,6 +35,7 @@ const products: Product[] = [
     colors: ["Black", "White"],
     sizes: ["One Size"],
     description: "Classic skull cap with embroidered logo",
+    category: "accessories",
   },
   {
     id: "3",
@@ -41,6 +45,7 @@ const products: Product[] = [
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Bold skull graphic tee with grunge aesthetics",
+    category: "shirts",
   },
   {
     id: "4",
@@ -50,6 +55,7 @@ const products: Product[] = [
     colors: ["Black", "White"],
     sizes: ["S", "M", "L", "XL"],
     description: "Statement rock tee with edgy design",
+    category: "shirts",
   },
   {
     id: "5",
@@ -59,6 +65,7 @@ const products: Product[] = [
     colors: ["Black", "Gray"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Premium hoodie with county branding",
+    category: "hoodies",
   },
   {
     id: "6",
@@ -68,6 +75,7 @@ const products: Product[] = [
     colors: ["Black", "Charcoal"],
     sizes: ["S", "M", "L", "XL"],
     description: "Distressed jacket with authentic grunge appeal",
+    category: "jackets",
   },
 ];
 
@@ -217,33 +225,46 @@ const Index = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-gray-100">
+      <section className="relative min-h-screen bg-gray-100 overflow-hidden">
+        {/* Background Video/Image */}
+        <div className="absolute inset-0 w-full h-full">
+          {/* For now using image background - replace with video when available */}
+          <div 
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/images/ff.png')" }}
+          />
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+
         {/* Marquee Text Overlay */}
         <div className="absolute inset-0 flex items-center pointer-events-none overflow-hidden">
-          <div className="whitespace-nowrap text-[80px] md:text-[200px] font-bold text-black/5 tracking-wider">
+          <div className="whitespace-nowrap text-[80px] md:text-[200px] font-bold text-white/10 tracking-wider">
             SIN ◆ REVENGE ◆ SIN ◆ REVENGE ☺ SIN
           </div>
         </div>
 
-        <div className="container mx-auto px-4 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between relative z-10">
+        <div className="container mx-auto px-4 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between relative z-10 min-h-screen">
           {/* Text Content */}
           <div className="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-            <p className="font-shadows text-lg md:text-2xl lg:text-5xl mb-6 text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
+            <p className="font-shadows text-lg md:text-2xl lg:text-5xl mb-6 text-white leading-relaxed max-w-lg mx-auto md:mx-0 drop-shadow-lg">
               Discover a curated selection of timeless designs and modern trends
               crafted to elevate your wardrobe. From statement pieces to
               everyday essentials, find the perfect fit that defines your unique
               style.
             </p>
-            <button
-              onClick={() =>
-                document
-                  .getElementById("shop")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="bg-black text-white px-6 md:px-8 py-3 flex items-center gap-2 hover:bg-white/90 hover:text-black transition-all duration-300 mx-auto md:mx-0 rounded-lg"
-            >
-              SHOP <span className="text-lg">→</span>
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("shop")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="bg-white text-black px-6 md:px-8 py-3 flex items-center gap-2 hover:bg-black hover:text-white transition-all duration-300 rounded-lg justify-center"
+              >
+                SHOP <span className="text-lg">→</span>
+              </button>
+            </div>
           </div>
 
           {/* Hero Image */}
@@ -252,11 +273,11 @@ const Index = () => {
               <img
                 src="/images/ff.png"
                 alt="Hero"
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg shadow-2xl"
               />
               {/* Decorative Corner */}
-              <div className="absolute top-4 left-4 w-6 md:w-8 h-6 md:h-8 border-l-2 border-t-2 border-black"></div>
-              <div className="absolute bottom-4 right-4 w-6 md:w-8 h-6 md:h-8 border-r-2 border-b-2 border-black"></div>
+              <div className="absolute top-4 left-4 w-6 md:w-8 h-6 md:h-8 border-l-2 border-t-2 border-white"></div>
+              <div className="absolute bottom-4 right-4 w-6 md:w-8 h-6 md:h-8 border-r-2 border-b-2 border-white"></div>
             </div>
           </div>
         </div>
@@ -283,6 +304,18 @@ const Index = () => {
               onClick={() => setSelectedProduct(product)}
             />
           ))}
+        </div>
+
+        {/* View Full Collection Button */}
+        <div className="text-center mt-12">
+          <Link to="/collections">
+            <Button 
+              size="lg"
+              className="bg-black text-white px-8 py-4 text-lg hover:bg-white hover:text-black border-2 border-black transition-all duration-300"
+            >
+              VIEW FULL COLLECTION
+            </Button>
+          </Link>
         </div>
       </section>
 
