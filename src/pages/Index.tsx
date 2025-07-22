@@ -165,13 +165,13 @@ const Index = () => {
       {/* Header */}
       <header
         ref={headerRef}
-        className="p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-transparent"
+        className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 flex justify-between items-center border-b border-white/20 bg-white/10 backdrop-blur-md"
       >
         <div className="flex items-center gap-2 md:gap-4">
           <div className="w-8 h-8 md:w-12 md:h-12 bg-black text-white flex items-center justify-center rounded-lg">
             <span className="font-bold text-sm md:text-xl">R</span>
           </div>
-          <h1 className="text-2xl md:text-4xl font-normal tracking-wider text-black">
+          <h1 className="text-2xl md:text-4xl font-normal tracking-wider text-white">
             SIN
           </h1>
         </div>
@@ -179,26 +179,26 @@ const Index = () => {
           <nav className="hidden md:flex gap-8">
             <a
               href="#"
-              className="font-medium hover:text-gray-600 transition-all duration-300"
+              className="font-medium text-white hover:text-white/70 transition-all duration-300"
             >
               Home
             </a>
             <a
               href="#shop"
-              className="font-medium hover:text-gray-600 transition-all duration-300"
+              className="font-medium text-white hover:text-white/70 transition-all duration-300"
             >
               Shop
             </a>
             <a
               href="#gallery"
-              className="font-medium hover:text-gray-600 transition-all duration-300"
+              className="font-medium text-white hover:text-white/70 transition-all duration-300"
             >
               Gallery
             </a>
           </nav>
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative p-2 border-2 border-black hover:bg-black hover:text-white transition-all duration-300 rounded-lg"
+            className="relative p-2 border-2 border-white/20 text-white hover:bg-white/20 hover:border-white/40 transition-all duration-300 rounded-lg"
           >
             <ShoppingBag size={16} className="md:w-5 md:h-5" />
             {totalItems > 0 && (
@@ -213,7 +213,7 @@ const Index = () => {
       {/* Scrolling Marquee */}
 
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-gray-100 overflow-hidden">
+      <section className="relative min-h-screen bg-gray-100 overflow-hidden pt-20">
         {/* Background Video */}
         <div className="absolute inset-0 w-full h-full">
           <video
