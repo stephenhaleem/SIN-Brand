@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -166,7 +165,7 @@ const Index = () => {
       {/* Header */}
       <header
         ref={headerRef}
-        className="p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-white"
+        className="p-4 md:p-6 flex justify-between items-center border-b-2 border-black bg-transparent"
       >
         <div className="flex items-center gap-2 md:gap-4">
           <div className="w-8 h-8 md:w-12 md:h-12 bg-black text-white flex items-center justify-center rounded-lg">
@@ -212,30 +211,19 @@ const Index = () => {
       </header>
 
       {/* Scrolling Marquee */}
-      <div
-        ref={marqueeRef}
-        className="py-2 md:py-4 bg-black text-white overflow-hidden"
-      >
-        <div className="marquee-text whitespace-nowrap text-lg md:text-2xl font-bold tracking-wider">
-          ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★
-          REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★ REVENGE ★ SIN
-          ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★
-          SIN ★ REVENGE ★ SIN ★
-        </div>
-      </div>
 
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100 overflow-hidden">
         {/* Background Video */}
         <div className="absolute inset-0 w-full h-full">
-          <video 
-            className="w-full h-full object-cover" 
-            autoPlay 
-            muted 
-            loop 
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
             playsInline
           >
-            <source src="/video/background.mp4" type="video/mp4" />
+            <source src="/video/woman.mp4" type="video/mp4" />
             {/* Fallback if video cannot be loaded */}
             Your browser does not support the video tag.
           </video>
@@ -274,23 +262,15 @@ const Index = () => {
           </div>
 
           {/* Hero Image */}
-          <div className="w-full md:w-1/2">
-            <div className="aspect-[3/4] relative w-full max-w-sm md:max-w-md mx-auto">
-              <img
-                src="/images/ff.png"
-                alt="Hero"
-                className="w-full h-full object-cover rounded-lg shadow-2xl"
-              />
-              {/* Decorative Corner */}
-              <div className="absolute top-4 left-4 w-6 md:w-8 h-6 md:h-8 border-l-2 border-t-2 border-white"></div>
-              <div className="absolute bottom-4 right-4 w-6 md:w-8 h-6 md:h-8 border-r-2 border-b-2 border-white"></div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Products Grid */}
-      <section id="shop" ref={productsRef} className="py-10 md:py-20 px-4 md:px-6 bg-gray-50">
+      <section
+        id="shop"
+        ref={productsRef}
+        className="py-10 md:py-20 px-4 md:px-6 bg-gray-50"
+      >
         <div className="text-center mb-8 md:mb-16">
           <h3 className="font-shadows text-2xl md:text-3xl font-bold mb-4 tracking-wider text-black">
             COLLECTION
@@ -315,7 +295,7 @@ const Index = () => {
         {/* View Full Collection Button */}
         <div className="text-center mt-12">
           <Link to="/collections">
-            <Button 
+            <Button
               size="lg"
               className="bg-black text-white px-8 py-4 text-lg hover:bg-white hover:text-black border-2 border-black transition-all duration-300"
             >
