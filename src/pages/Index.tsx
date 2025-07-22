@@ -226,13 +226,19 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100 overflow-hidden">
-        {/* Background Video/Image */}
+        {/* Background Video */}
         <div className="absolute inset-0 w-full h-full">
-          {/* For now using image background - replace with video when available */}
-          <div 
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/images/ff.png')" }}
-          />
+          <video 
+            className="w-full h-full object-cover" 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+          >
+            <source src="/video/background.mp4" type="video/mp4" />
+            {/* Fallback if video cannot be loaded */}
+            Your browser does not support the video tag.
+          </video>
           {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
