@@ -165,9 +165,10 @@ const Index = () => {
       {/* Header */}
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 flex justify-between items-center border-b border-white/20 bg-white/10 backdrop-blur-md"
+        className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 flex items-center border-b border-white/20 bg-white/10 backdrop-blur-md"
       >
-        <div className="flex items-center gap-2 md:gap-4">
+        {/* Left Section */}
+        <div className="flex items-center gap-2 md:gap-4 flex-1">
           <div className="w-8 h-8 md:w-12 md:h-12 bg-black text-white flex items-center justify-center rounded-lg">
             <span className="font-bold text-sm md:text-xl">R</span>
           </div>
@@ -175,7 +176,21 @@ const Index = () => {
             SIN
           </h1>
         </div>
-        <div className="flex items-center gap-4 md:gap-6">
+        
+        {/* Center Section - Custom Image/Text */}
+        <div className="flex-1 flex justify-center">
+          <div className="h-8 md:h-12 flex items-center">
+            {/* Add your custom image here */}
+            <img 
+              src="/images/custom-text.png" 
+              alt="Custom Text" 
+              className="h-full object-contain"
+            />
+          </div>
+        </div>
+        
+        {/* Right Section */}
+        <div className="flex items-center gap-4 md:gap-6 flex-1 justify-end">
           <nav className="hidden md:flex gap-8">
             <a
               href="#"
