@@ -223,7 +223,10 @@ const Index = () => {
             loop
             playsInline
           >
-            <source src="/video/woman.mp4" type="video/mp4" />
+            <source
+              src="/video/4962520_Woman_Dancing_1920x1080 (1).mp4"
+              type="video/mp4"
+            />
             {/* Fallback if video cannot be loaded */}
             Your browser does not support the video tag.
           </video>
