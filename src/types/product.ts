@@ -7,7 +7,6 @@ export interface Product {
   colors: string[];
   sizes: string[];
   description: string;
-  category?: string;
 }
 
 export interface CartItem {
