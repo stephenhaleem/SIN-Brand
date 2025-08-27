@@ -394,6 +394,24 @@ ${orderItems}
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="zipCode"
+                    render={({ field }) => (
+                      <FormItem className="form-item">
+                        <FormLabel className="font-bold tracking-wider">
+                          ZIP CODE
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            className="border-black rounded-md"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
 
                 <Button
