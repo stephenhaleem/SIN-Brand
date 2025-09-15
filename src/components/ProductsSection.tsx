@@ -1,4 +1,3 @@
-
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,12 +11,16 @@ interface ProductsSectionProps {
   onProductSelect: (product: Product) => void;
 }
 
-const ProductsSection = ({ products, onProductSelect }: ProductsSectionProps) => {
+const ProductsSection = ({
+  products,
+  onProductSelect,
+}: ProductsSectionProps) => {
   const productsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (productsRef.current) {
-      const productCards = productsRef.current.querySelectorAll(".product-card");
+      const productCards =
+        productsRef.current.querySelectorAll(".product-card");
       gsap.fromTo(
         productCards,
         { opacity: 0, y: 50 },
@@ -43,15 +46,19 @@ const ProductsSection = ({ products, onProductSelect }: ProductsSectionProps) =>
   }, []);
 
   return (
-    <section id="shop" ref={productsRef} className="py-10 md:py-20 px-4 md:px-6 bg-gray-50">
+    <section
+      id="shop"
+      ref={productsRef}
+      className="py-10 md:py-20 px-4 md:px-6 bg-gray-50"
+    >
       <div className="text-center mb-8 md:mb-16">
         <h3 className="font-shadows text-2xl md:text-3xl font-bold mb-4 tracking-wider text-black">
           COLLECTION
         </h3>
         <div className="w-24 md:w-32 h-1 bg-black mx-auto mb-6 md:mb-8"></div>
         <p className="text-center text-gray-600 mb-8 md:mb-16 text-lg md:text-xl max-w-2xl mx-auto px-4">
-          Handpicked pieces forged in the spirit of rebellion. Each item
-          carries the essence of streetwear.
+          Handpicked pieces forged in the spirit of rebellion. Each item carries
+          the essence of streetwear.
         </p>
       </div>
 

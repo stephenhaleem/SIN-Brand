@@ -1,4 +1,3 @@
-
 import { Product } from "@/types/product";
 
 export const products: Product[] = [
@@ -49,6 +48,15 @@ export const products: Product[] = [
   },
   {
     id: "6",
+    name: "Grunge Jacket",
+    price: 65000,
+    images: ["/images/ff.jpg"],
+    colors: ["Black", "Charcoal"],
+    sizes: ["S", "M", "L", "XL"],
+    description: "Distressed jacket with authentic grunge appeal",
+  },
+  {
+    id: "7",
     name: "Grunge Jacket",
     price: 65000,
     images: ["/images/ff.jpg"],
