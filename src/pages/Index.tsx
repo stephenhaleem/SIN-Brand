@@ -17,7 +17,7 @@ const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-white text-black">
       <Header onCartOpen={() => setIsCartOpen(true)} />
       <Marquee />
       <HeroSection />
