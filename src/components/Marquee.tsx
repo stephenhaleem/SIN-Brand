@@ -23,7 +23,7 @@ const Marquee = () => {
   return (
     <div
       ref={marqueeRef}
-      className="py-2 md:py-4 bg-black text-white overflow-hidden relative z-20"
+      className="py-2 md:py-4 bg-foreground text-background overflow-hidden relative z-20"
     >
       <div className="marquee-text whitespace-nowrap text-lg md:text-2xl font-bold tracking-wider">
         ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ REVENGE ★ SIN ★ ★ SIN ★

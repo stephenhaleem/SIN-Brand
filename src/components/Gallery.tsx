@@ -12,13 +12,13 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-white text-black">
+    <section className="py-20 px-6 bg-background text-foreground">
       <div className="text-center mb-16">
-        <h3 className="text-3xl font-bold mb-4 tracking-wider text-black font-shadows">
+        <h3 className="text-3xl font-bold mb-4 tracking-wider text-foreground font-shadows">
           GALLERY
         </h3>
-        <div className="w-32 h-1 bg-white mx-auto mb-8"></div>
-        <p className="text-gray-400 text-xl max-w-2xl mx-auto font-hubot">
+        <div className="w-32 h-1 bg-foreground mx-auto mb-8"></div>
+        <p className="text-muted-foreground text-xl max-w-2xl mx-auto font-hubot">
           Authentic streetwear moments captured in their element.
         </p>
       </div>
