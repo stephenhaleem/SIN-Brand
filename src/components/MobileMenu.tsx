@@ -1,6 +1,6 @@
-
-import React, { useState } from 'react';
-import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom"; // Add this import
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,48 +10,48 @@ const MobileMenu = () => {
     {
       title: "EXPLORE",
       items: [
-        { title: "Brand Story", href: "#brand" },
-        { title: "Collections", href: "#collections" },
-        { title: "Lookbook", href: "#lookbook" },
-        { title: "Behind the Scenes", href: "#behind" }
-      ]
+        { title: "Brand Story", href: "/brand" },
+        { title: "Collections", href: "/collections" },
+        { title: "Lookbook", href: "/lookbook" },
+        { title: "Behind the Scenes", href: "/behind" },
+      ],
     },
     {
       title: "STREETWEAR",
       items: [
-        { title: "T-Shirts", href: "#tshirts" },
-        { title: "Hoodies", href: "#hoodies" },
-        { title: "Jackets", href: "#jackets" },
-        { title: "Accessories", href: "#accessories" }
-      ]
+        { title: "T-Shirts", href: "/tshirts" },
+        { title: "Hoodies", href: "/hoodies" },
+        { title: "Jackets", href: "/jackets" },
+        { title: "Accessories", href: "/accessories" },
+      ],
     },
     {
       title: "COLLECTIONS",
       items: [
-        { title: "Latest Drop", href: "#latest" },
-        { title: "Limited Edition", href: "#limited" },
-        { title: "Classic Series", href: "#classic" },
-        { title: "Collaborations", href: "#collabs" }
-      ]
+        { title: "Latest Drop", href: "/latest" },
+        { title: "Limited Edition", href: "/limited" },
+        { title: "Classic Series", href: "/classic" },
+        { title: "Collaborations", href: "/collabs" },
+      ],
     },
     {
       title: "COMMUNITY",
       items: [
-        { title: "Events", href: "#events" },
-        { title: "Artists", href: "#artists" },
-        { title: "Gallery", href: "#gallery" },
-        { title: "Street Style", href: "#street-style" }
-      ]
+        { title: "Events", href: "/events" },
+        { title: "Artists", href: "/artists" },
+        { title: "Gallery", href: "/gallery" },
+        { title: "Street Style", href: "/street-style" },
+      ],
     },
     {
       title: "HOW TO STYLE",
       items: [
-        { title: "Style Guide", href: "#style-guide" },
-        { title: "Mix & Match", href: "#mix-match" },
-        { title: "Seasonal Looks", href: "#seasonal" },
-        { title: "Care Instructions", href: "#care" }
-      ]
-    }
+        { title: "Style Guide", href: "/style-guide" },
+        { title: "Mix & Match", href: "/mix-match" },
+        { title: "Seasonal Looks", href: "/seasonal" },
+        { title: "Care Instructions", href: "/care" },
+      ],
+    },
   ];
 
   const toggleSection = (title: string) => {
@@ -86,14 +86,14 @@ const MobileMenu = () => {
                 {openSection === section.title && (
                   <div className="bg-gray-50">
                     {section.items.map((item) => (
-                      <a
+                      <Link
                         key={item.title}
-                        href={item.href}
+                        to={item.href}
                         className="block px-6 py-2 text-sm text-gray-700 hover:text-black hover:bg-gray-100"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.title}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
