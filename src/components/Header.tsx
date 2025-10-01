@@ -4,15 +4,12 @@ import { ShoppingBag } from "lucide-react";
 import Navigation from "./Navigation";
 import MobileMenu from "./MobileMenu";
 import { useCart } from "@/contexts/CartContext";
-
 interface HeaderProps {
   onCartOpen: () => void;
 }
-
 const Header = ({ onCartOpen }: HeaderProps) => {
   const { totalItems } = useCart();
   const headerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (headerRef.current) {
       gsap.fromTo(
@@ -22,39 +19,42 @@ const Header = ({ onCartOpen }: HeaderProps) => {
       );
     }
   }, []);
-
   return (
     <header
       ref={headerRef}
       className="fixed top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center bg-background/80 backdrop-blur-xl border-b border-border z-50 shadow-premium"
     >
+      {" "}
       <div className="flex items-center gap-2 md:gap-4">
+        {" "}
         <div className="w-8 h-8 md:w-12 md:h-12 bg-foreground text-background flex items-center justify-center">
-          <span className="font-black text-sm md:text-xl">R</span>
-        </div>
+          {" "}
+          <span className="font-black text-sm md:text-xl">R</span>{" "}
+        </div>{" "}
         <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground">
-          SIN
-        </h1>
-      </div>
-
-      <Navigation />
-
+          {" "}
+          SIN{" "}
+        </h1>{" "}
+      </div>{" "}
+      <Navigation />{" "}
       <div className="flex items-center gap-4 md:gap-6">
-        <MobileMenu />
+        {" "}
+        <MobileMenu />{" "}
         <button
           onClick={onCartOpen}
           className="relative p-2 border-2 border-foreground hover:bg-foreground hover:text-background transition-all duration-300"
         >
-          <ShoppingBag size={16} className="md:w-5 md:h-5" />
+          {" "}
+          <ShoppingBag size={16} className="md:w-5 md:h-5" />{" "}
           {totalItems > 0 && (
             <span className="absolute -top-2 -right-2 w-4 h-4 md:w-5 md:h-5 bg-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
-              {totalItems}
+              {" "}
+              {totalItems}{" "}
             </span>
-          )}
-        </button>
-      </div>
+          )}{" "}
+        </button>{" "}
+      </div>{" "}
     </header>
   );
 };
-
 export default Header;
