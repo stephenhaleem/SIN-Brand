@@ -3,67 +3,103 @@ import { gsap } from "gsap";
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (heroRef.current) {
+      const heroTitle = heroRef.current.querySelector(".hero-title");
       const heroDesc = heroRef.current.querySelector(".hero-desc");
       const heroButton = heroRef.current.querySelector(".hero-button");
 
       gsap.fromTo(
-        [heroDesc, heroButton].filter(Boolean), // Only animate non-null elements
-        { opacity: 0, y: 50 },
+        [heroTitle, heroDesc, heroButton].filter(Boolean),
+        { opacity: 0, y: 80 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power3.out",
-          delay: 0.3,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+          delay: 0.5,
         }
       );
     }
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-gray-100">
-      <div className="absolute inset-0 flex items-center pointer-events-none overflow-hidden">
-        <div className="whitespace-nowrap text-[80px] md:text-[200px] font-bold text-black/5 tracking-wider">
-          SIN ◆ REVENGE ◆ SIN ◆ REVENGE ☺ SIN
+    <section className="relative min-h-screen overflow-hidden bg-background">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="https://cdn.coverr.co/videos/coverr-a-man-wearing-a-black-hoodie-9605/1080p.mp4" type="video/mp4" />
+        </video>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90"></div>
+      </div>
+
+      {/* Animated Text Pattern */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-10">
+        <div className="whitespace-nowrap text-[120px] md:text-[280px] font-black text-white tracking-wider">
+          SIN × REVENGE
         </div>
       </div>
 
+      {/* Content */}
       <div
         ref={heroRef}
-        className="container mx-auto px-4 md:px-6 py-10 md:py-20 flex flex-col md:flex-row items-center justify-between relative z-10"
+        className="relative z-10 container mx-auto px-6 md:px-12 min-h-screen flex flex-col justify-center items-start"
       >
-        <div className="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-          <p className="hero-desc font-shadows text-lg md:text-2xl lg:text-5xl mb-6 text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
-            Discover a curated selection of timeless designs and modern trends
-            crafted to elevate your wardrobe. From statement pieces to everyday
-            essentials, find the perfect fit that defines your unique style.
+        <div className="max-w-4xl space-y-8">
+          <h1 className="hero-title text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none">
+            STREET<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
+              CULTURE
+            </span>
+          </h1>
+          
+          <p className="hero-desc text-xl md:text-2xl lg:text-3xl text-white/90 font-light leading-relaxed max-w-2xl border-l-4 border-white pl-6">
+            Premium streetwear for those who dare to stand out. 
+            Crafted with precision, designed for rebellion.
           </p>
-          <button
-            onClick={() =>
-              document
-                .getElementById("shop")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="hero-button bg-black text-white px-6 md:px-8 py-3 flex items-center gap-2 hover:bg-white/90 hover:text-black transition-all duration-300 mx-auto md:mx-0 rounded-lg"
-          >
-            SHOP <span className="text-lg">→</span>
-          </button>
+
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <button
+              onClick={() =>
+                document
+                  .getElementById("shop")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="hero-button group bg-white text-black px-10 py-5 text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-3 shadow-2xl"
+            >
+              EXPLORE COLLECTION
+              <span className="text-2xl group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </button>
+            
+            <button
+              onClick={() =>
+                document
+                  .getElementById("gallery")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="group bg-transparent text-white px-10 py-5 text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-3"
+            >
+              VIEW LOOKBOOK
+              <span className="text-2xl group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </button>
+          </div>
         </div>
 
-        <div className="w-full md:w-1/2">
-          <div className="aspect-[3/4] relative w-full max-w-sm md:max-w-md mx-auto">
-            <img
-              src="/images/ff.png"
-              alt="Hero"
-              className="w-full h-full object-cover rounded-lg"
-            />
-            <div className="absolute top-4 left-4 w-6 md:w-8 h-6 md:h-8 border-l-2 border-t-2 border-black"></div>
-            <div className="absolute bottom-4 right-4 w-6 md:w-8 h-6 md:h-8 border-r-2 border-b-2 border-black"></div>
-          </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <span className="text-white/60 text-sm font-medium tracking-wider">SCROLL</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent"></div>
         </div>
       </div>
     </section>

@@ -17,20 +17,21 @@ const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-background text-foreground">
       <Header onCartOpen={() => setIsCartOpen(true)} />
-      <Marquee />
-      <HeroSection />
-      <ProductsSection 
-        products={products} 
-        onProductSelect={setSelectedProduct} 
-      />
-      
-      <div id="gallery">
-        <Gallery />
-      </div>
-      
-      <Newsletter />
+      <main className="pt-20">
+        <HeroSection />
+        <ProductsSection 
+          products={products} 
+          onProductSelect={setSelectedProduct} 
+        />
+        
+        <div id="gallery">
+          <Gallery />
+        </div>
+        
+        <Newsletter />
+      </main>
       <Footer />
       
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

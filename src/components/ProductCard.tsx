@@ -80,56 +80,56 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
   return (
     <div
       ref={cardRef}
-      className="product-card cursor-pointer border border-black/10 bg-white hover:bg-black transition-all duration-700 group shadow-md transform perspective-1000 w-full max-w-[300px] sm:max-w-[280px] mx-auto rounded-lg"
+      className="product-card cursor-pointer border-2 border-border bg-card hover:bg-foreground transition-all duration-700 group shadow-premium hover:shadow-premium-lg transform perspective-1000 w-full max-w-[320px] sm:max-w-[300px] mx-auto"
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="aspect-square overflow-hidden relative rounded-t-lg">
+      <div className="aspect-square overflow-hidden relative">
         <img
           ref={imageRef}
           src={product.images[0]}
           alt={product.name}
           className="w-full h-full object-cover"
         />
-        {/* Overlay with clean effect */}
+        {/* Premium Overlay */}
         <div
           ref={overlayRef}
-          className="absolute inset-0 bg-black/0 group-hover:bg-black/10 opacity-0 transition-all duration-300"
+          className="absolute inset-0 bg-black/0 group-hover:bg-black/20 opacity-0 transition-all duration-500"
         />
-        {/* Animated corner elements */}
-        <div className="absolute top-2 left-2 w-3 h-3 border-l border-t border-black/70 opacity-0 group-hover:border-white/70 group-hover:opacity-100 transition-all duration-300"></div>
-        <div className="absolute top-2 right-2 w-3 h-3 border-r border-t border-black/70 opacity-0 group-hover:border-white/70 group-hover:opacity-100 transition-all duration-300"></div>
-        <div className="absolute bottom-2 left-2 w-3 h-3 border-l border-b border-black/70 opacity-0 group-hover:border-white/70 group-hover:opacity-100 transition-all duration-300"></div>
-        <div className="absolute bottom-2 right-2 w-3 h-3 border-r border-b border-black/70 opacity-0 group-hover:border-white/70 group-hover:opacity-100 transition-all duration-300"></div>
+        {/* Corner Elements */}
+        <div className="absolute top-3 left-3 w-4 h-4 border-l-2 border-t-2 border-foreground/70 opacity-0 group-hover:border-background group-hover:opacity-100 transition-all duration-300"></div>
+        <div className="absolute top-3 right-3 w-4 h-4 border-r-2 border-t-2 border-foreground/70 opacity-0 group-hover:border-background group-hover:opacity-100 transition-all duration-300"></div>
+        <div className="absolute bottom-3 left-3 w-4 h-4 border-l-2 border-b-2 border-foreground/70 opacity-0 group-hover:border-background group-hover:opacity-100 transition-all duration-300"></div>
+        <div className="absolute bottom-3 right-3 w-4 h-4 border-r-2 border-b-2 border-foreground/70 opacity-0 group-hover:border-background group-hover:opacity-100 transition-all duration-300"></div>
       </div>
 
-      <div className="p-4 relative">
-        <div className="relative z-10">
-          <h3 className="text-sm font-bold mb-2 tracking-wider text-black group-hover:text-white transition-colors duration-300">
+      <div className="p-5 relative">
+        <div className="relative z-10 space-y-3">
+          <h3 className="text-sm font-black mb-2 tracking-widest uppercase text-card-foreground group-hover:text-primary-foreground transition-colors duration-300">
             {product.name}
           </h3>
-          <p className="text-base font-bold mb-2 text-black/90 group-hover:text-white transition-colors duration-300">
+          <p className="text-lg font-black text-card-foreground group-hover:text-primary-foreground transition-colors duration-300">
             {formatPrice(product.price)}
           </p>
-          <p className="text-xs text-black/70 group-hover:text-white/80 transition-colors duration-300 mb-3 line-clamp-2">
+          <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/80 transition-colors duration-300 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
 
-          <div className="mt-2 pt-2 border-t border-black/10 group-hover:border-white/20 transition-colors duration-300">
+          <div className="pt-3 border-t-2 border-border group-hover:border-primary-foreground/30 transition-colors duration-300">
             <div className="flex justify-between items-center">
-              <p className="text-[10px] tracking-wide font-medium text-black/50 group-hover:text-white/70 transition-colors duration-300">
+              <p className="text-[10px] tracking-widest font-bold uppercase text-muted-foreground group-hover:text-primary-foreground/70 transition-colors duration-300">
                 {product.colors.length} colors • {product.sizes.length} sizes
               </p>
-              <div className="flex gap-1">
+              <div className="flex gap-1.5">
                 {product.colors.slice(0, 2).map((color, index) => (
                   <div
                     key={index}
-                    className={`w-1.5 h-1.5 rounded-full border ${
+                    className={`w-2 h-2 rounded-full border-2 ${
                       color === "Black"
                         ? "bg-black border-black group-hover:border-white"
                         : color === "White"
-                        ? "bg-white border-black/20 group-hover:border-white"
+                        ? "bg-white border-foreground/30 group-hover:border-white"
                         : "bg-gray-500 border-gray-400"
                     }`}
                   />
