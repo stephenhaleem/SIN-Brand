@@ -47,12 +47,12 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
   return (
     <>
       {/* Overlay */}
-      <div className="fixed inset-0 bg-black/20 z-40" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/80 z-40" onClick={onClose} />
 
       {/* Cart Sidebar */}
       <div
         ref={cartRef}
-        className="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 flex flex-col"
+        className="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 flex flex-col shadow-2xl"
       >
         {/* Header */}
         <div className="flex justify-between items-center p-6">

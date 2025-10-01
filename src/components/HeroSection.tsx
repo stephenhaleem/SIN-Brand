@@ -57,7 +57,7 @@ const HeroSection = () => {
         className="relative z-10 container mx-auto px-6 md:px-12 min-h-screen flex flex-col justify-center items-start"
       >
         <div className="max-w-4xl space-y-8">
-          <h1 className="hero-title text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none">
+          <h1 className="hero-title text-3xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none">
             STREET
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
@@ -65,22 +65,22 @@ const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="hero-desc text-xl md:text-2xl lg:text-3xl text-white/90 font-light leading-relaxed max-w-2xl border-l-4 border-white pl-6">
+          <p className="hero-desc text-base md:text-2xl lg:text-3xl text-white/90 font-light leading-relaxed max-w-2xl border-l-4 border-white pl-4 md:pl-6">
             Premium streetwear for those who dare to stand out. Crafted with
             precision, designed for rebellion.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
             <button
               onClick={() =>
                 document
                   .getElementById("shop")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="hero-button group bg-white text-black px-10 py-5 text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-3 shadow-2xl"
+              className="hero-button group bg-white text-black px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
             >
               EXPLORE COLLECTION
-              <span className="text-2xl group-hover:translate-x-2 transition-transform duration-300">
+              <span className="text-xl md:text-2xl group-hover:translate-x-2 transition-transform duration-300">
                 →
               </span>
             </button>
@@ -91,10 +91,10 @@ const HeroSection = () => {
                   .getElementById("gallery")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="group bg-transparent text-white px-10 py-5 text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-3"
+              className="group bg-transparent text-white px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3"
             >
               VIEW LOOKBOOK
-              <span className="text-2xl group-hover:translate-x-2 transition-transform duration-300">
+              <span className="text-xl md:text-2xl group-hover:translate-x-2 transition-transform duration-300">
                 →
               </span>
             </button>
