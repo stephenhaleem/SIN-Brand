@@ -5,9 +5,14 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Revenge TankTop",
-    price: 37000,
+    price: 29999.99,
     images: ["/images/DSCF3643.jpg"], // Default/fallback
     colorVariants: [
+      {
+        color: "Pink",
+        images: ["/images/DSCF3448.jpg", "/images/DSCF3465.jpg"],
+      },
+
       {
         color: "Gray",
         images: ["/images/DSCF3553.jpg", "/images/DSCF3653-2.jpg"],
@@ -20,19 +25,15 @@ export const products: Product[] = [
           "/images/DSCF3599-2.jpg",
         ],
       },
-      {
-        color: "Pink",
-        images: ["/images/DSCF3465.jpg", "/images/DSCF3448.jpg"],
-      },
     ],
-    colors: ["Gray", "DarkBlue", "Pink"],
+    colors: ["Pink", "Gray", "DarkBlue"],
     sizes: ["S", "M", "L", "XL"],
-    description: "Premium streetwear shorts with skull graphic",
+    description: "Premium tanktop with revenge graphic",
   },
   {
     id: "2",
     name: "Revenge Hoodie",
-    price: 12000,
+    price: 49999.99,
     images: ["/images/DSCF3557-Recovered.jpg"],
     colorVariants: [
       {
@@ -50,8 +51,8 @@ export const products: Product[] = [
   },
   {
     id: "3",
-    name: "Skull Tee (Black)",
-    price: 29000,
+    name: "Revenge Joggers",
+    price: 49999.99,
     images: ["/images/tee3.jpg"],
     colorVariants: [
       {
@@ -69,8 +70,8 @@ export const products: Product[] = [
   },
   {
     id: "4",
-    name: "Rock Tee (Black)",
-    price: 25000,
+    name: "Revenge Skullcap",
+    price: 19999.99,
     images: ["/images/tee4.jpg"],
     colorVariants: [
       {
