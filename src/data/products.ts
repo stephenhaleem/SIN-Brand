@@ -10,37 +10,41 @@ export const products: Product[] = [
     colorVariants: [
       {
         color: "Gray",
-        images: ["images/DSCF3617-2.jpg", "/images/DSCF3599-2.jpg"],
+        images: ["/images/DSCF3553.jpg", "/images/DSCF3653-2.jpg"],
       },
       {
-        color: "White",
-        images: ["/images/tee1-white.jpg", "/images/tee1-white-2.jpg"],
+        color: "DarkBlue",
+        images: [
+          "/images/DSCF3617-2.jpg",
+          "/images/DSCF3606-2.jpg",
+          "/images/DSCF3599-2.jpg",
+        ],
       },
       {
         color: "Pink",
-        images: ["/images/tee1-white.jpg", "/images/tee1-white-2.jpg"],
+        images: ["/images/DSCF3465.jpg", "/images/DSCF3448.jpg"],
       },
     ],
-    colors: ["Gray", "White"],
+    colors: ["Gray", "DarkBlue", "Pink"],
     sizes: ["S", "M", "L", "XL"],
     description: "Premium streetwear shorts with skull graphic",
   },
   {
     id: "2",
-    name: "Skull Cap",
+    name: "Revenge Hoodie",
     price: 12000,
-    images: ["/images/tee2.jpg"],
+    images: ["/images/DSCF3557-Recovered.jpg"],
     colorVariants: [
       {
-        color: "Black",
-        images: ["/images/tee2.jpg"],
+        color: "Pink",
+        images: ["/images/DSCF3557-Recovered.jpg"],
       },
       {
-        color: "White",
-        images: ["/images/tee2-white.jpg"],
+        color: "Gray",
+        images: ["/images/DSCF3486.jpg", "/images/DSCF3517.jpg"],
       },
     ],
-    colors: ["Black", "White"],
+    colors: ["Pink", "Gray"],
     sizes: ["One Size"],
     description: "Classic skull cap with embroidered logo",
   },
