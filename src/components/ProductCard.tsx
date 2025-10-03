@@ -9,17 +9,21 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const cardRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  // Get the first image from the first color variant or fallback to default
+  // Get current color's image
   const displayImage = useMemo(() => {
-    if (product.colorVariants && product.colorVariants.length > 0) {
-      return product.colorVariants[0].images[0];
+    if (product.colorVariants) {
+      const variant = product.colorVariants.find(
+        (v) => v.color === selectedColor
+      );
+      return variant ? variant.images[0] : product.images[0];
     }
     return product.images[0];
-  }, [product]);
+  }, [product, selectedColor]);
 
   useEffect(() => {
     if (cardRef.current) {
@@ -130,20 +134,20 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
                 {product.colors.length} colors • {product.sizes.length} sizes
               </p>
               <div className="flex gap-1.5">
-                {product.colors.slice(0, 2).map((color, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full border-2 ${
-                      color === "Black"
-                        ? "bg-black border-black group-hover:border-white"
-                        : color === "White"
-                        ? "bg-white border-foreground/30 group-hover:border-white"
-                        : color === "Gray"
-                        ? "bg-gray-500 border-gray-400 group-hover:border-white"
-                        : color === "Charcoal"
-                        ? "bg-gray-700 border-gray-600 group-hover:border-white"
-                        : "bg-gray-500 border-gray-400 group-hover:border-white"
+                {product.colors.map((color) => (
+                  <button
+                    key={color}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedColor(color);
+                    }}
+                    className={`w-4 h-4 rounded-full border-2 transition-all ${
+                      selectedColor === color
+                        ? "ring-2 ring-offset-1 ring-primary scale-125"
+                        : "hover:scale-110"
                     }`}
+                    style={{ backgroundColor: color.toLowerCase() }}
+                    title={color}
                   />
                 ))}
               </div>

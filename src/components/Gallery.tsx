@@ -71,14 +71,20 @@ const Gallery = () => {
             onClick={() => setCurrentIndex(index)}
           >
             {isVideo(file) ? (
-              <video
-                src={file}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              />
+              <div className="relative w-full h-full bg-black">
+                <video
+                  src={file}
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                    <div className="w-0 h-0 border-l-[20px] border-l-black border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1" />
+                  </div>
+                </div>
+              </div>
             ) : (
               <img
                 src={file}
@@ -97,14 +103,6 @@ const Gallery = () => {
               >
                 View
               </button>
-              <a
-                href={file}
-                download
-                onClick={(e) => e.stopPropagation()}
-                className="px-4 py-2 bg-black text-white font-semibold text-sm rounded-lg shadow flex items-center gap-2 hover:bg-gray-800 transition"
-              >
-                <Download size={16} /> Download
-              </a>
             </div>
           </div>
         ))}

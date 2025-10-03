@@ -21,10 +21,7 @@ const Index = () => {
       <Header onCartOpen={() => setIsCartOpen(true)} />
       <main className="pt-20">
         <HeroSection />
-        <ProductsSection 
-          products={products} 
-          onProductSelect={setSelectedProduct} 
-        />
+        <ProductsSection products={products} />
         
         <div id="gallery">
           <Gallery />

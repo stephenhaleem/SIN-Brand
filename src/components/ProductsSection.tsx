@@ -14,6 +14,7 @@ interface ProductsSectionProps {
 const ProductsSection = ({ products }: ProductsSectionProps) => {
   const productsRef = useRef<HTMLDivElement>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
 
   useEffect(() => {
     if (productsRef.current) {
