@@ -41,7 +41,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background">
+    <section className="relative h-screen overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 w-full h-full">
         {isMobile ? (
@@ -95,7 +95,7 @@ const HeroSection = () => {
       {/* Content (same as before) */}
       <div
         ref={heroRef}
-        className="relative z-10 container mx-auto px-6 md:px-12 min-h-screen flex flex-col justify-center items-start"
+        className="relative z-10 container mx-auto px-6 md:px-12 h-screen flex flex-col justify-center items-start"
       >
         <div className="max-w-4xl space-y-8">
           <h1 className="hero-title text-3xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none">

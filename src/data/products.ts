@@ -29,6 +29,7 @@ export const products: Product[] = [
     colors: ["Pink", "Gray", "DarkBlue"],
     sizes: ["S", "M", "L", "XL"],
     description: "Premium tanktop with revenge graphic",
+    available: true,
   },
   {
     id: "2",
@@ -48,6 +49,7 @@ export const products: Product[] = [
     colors: ["Pink", "Gray"],
     sizes: ["One Size"],
     description: "Cozy hoodie with embroidered logo",
+    available: true,
   },
   {
     id: "3",
@@ -67,6 +69,7 @@ export const products: Product[] = [
     colors: ["Black", "Gray"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Comfort-fit joggers with embroidered logo",
+    available: true,
   },
   {
     id: "4",
@@ -86,6 +89,7 @@ export const products: Product[] = [
     colors: ["Gray", "White"],
     sizes: ["One Size"],
     description: "Classic skullcap with embroidered logo",
+    available: true,
   },
   {
     id: "5",
@@ -105,5 +109,22 @@ export const products: Product[] = [
     colors: ["Gray", "Pink"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Matching hoodie and jogger set with embroidered logo",
+    available: true,
+  },
+  {
+    id: "6",
+    name: "Revenge Thumbsleeves",
+    price: 0,
+    images: ["/images/thumb.jpg"],
+    colorVariants: [
+      {
+        color: "Black",
+        images: ["/images/thumb.jpg"],
+      },
+    ],
+    colors: ["Black"],
+    sizes: ["One Size"],
+    description: "Comfort-fit thumb sleeves with logo",
+    available: false,
   },
 ];

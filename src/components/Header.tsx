@@ -1,13 +1,17 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+
 interface HeaderProps {
   onCartOpen: () => void;
 }
+
 const Header = ({ onCartOpen }: HeaderProps) => {
   const { totalItems } = useCart();
   const headerRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
     if (headerRef.current) {
       gsap.fromTo(
@@ -17,10 +21,22 @@ const Header = ({ onCartOpen }: HeaderProps) => {
       );
     }
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center bg-background/20 backdrop-blur-xl border-b border-border z-50 shadow-premium"
+      className={`fixed top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center border-b border-border z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background/20 backdrop-blur-xl shadow-premium" : ""
+      }`}
     >
       <div className="flex items-center gap-2 md:gap-4">
         {/* Replace R and SIN with PNG logo */}
@@ -45,4 +61,5 @@ const Header = ({ onCartOpen }: HeaderProps) => {
     </header>
   );
 };
+
 export default Header;

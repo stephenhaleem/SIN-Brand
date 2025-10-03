@@ -17,6 +17,7 @@ export interface Product {
   colors: string[];
   sizes: string[];
   description: string;
+  available?: boolean; // Optional: indicates if the product is in stock
 }
 
 export interface CartItem {
