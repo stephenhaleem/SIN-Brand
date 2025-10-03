@@ -34,7 +34,7 @@ const Header = ({ onCartOpen }: HeaderProps) => {
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center border-b border-border z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 p-5 md:p-3 flex justify-between items-center border-b border-border z-50 transition-all duration-300 ${
         isScrolled ? "bg-background/20 backdrop-blur-xl shadow-premium" : ""
       }`}
     >
