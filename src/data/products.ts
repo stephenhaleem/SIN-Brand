@@ -57,14 +57,14 @@ export const products: Product[] = [
     colorVariants: [
       {
         color: "Black",
-        images: ["/images/tee3.jpg"],
+        images: ["/images/black jog.jpg", "/images/black jog2.jpg"],
       },
       {
-        color: "White",
-        images: ["/images/tee3-white.jpg"],
+        color: "Gray",
+        images: ["/images/grey jogs.jpg"],
       },
     ],
-    colors: ["Black", "White"],
+    colors: ["Black", "Gray"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Bold skull graphic tee with grunge aesthetics",
   },
