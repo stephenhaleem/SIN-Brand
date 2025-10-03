@@ -128,12 +128,12 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
   return (
     <div
       ref={modalRef}
-      className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 bg-black/95 z-50 overflow-y-auto"
       onClick={handleClose}
     >
       <div
         ref={contentRef}
-        className="bg-white max-w-6xl w-full max-h-[90vh] overflow-y-auto p-8"
+        className="bg-white min-h-screen w-full p-4 md:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
