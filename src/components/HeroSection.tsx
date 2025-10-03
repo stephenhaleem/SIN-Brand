@@ -99,16 +99,16 @@ const HeroSection = () => {
       >
         <div className="max-w-4xl space-y-8">
           <h1 className="hero-title text-3xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none">
-            STREET
+            SIN
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-              CULTURE
+              REVENGE
             </span>
           </h1>
 
-          <p className="hero-desc text-base md:text-2xl lg:text-3xl text-white/90 font-light leading-relaxed max-w-2xl border-l-4 border-white pl-4 md:pl-6">
+          <p className="hero-desc text-base md:text-2xl lg:text-3xl text-white/90 font-light leading-relaxed max-w-2xl border-l-4 border-white pl-4 md:pl-6 font-shadows">
             Premium streetwear for those who dare to stand out. Crafted with
-            precision, designed for rebellion.
+            precision, designed for revenge.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
