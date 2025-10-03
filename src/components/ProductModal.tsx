@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { X, Plus, Minus } from "lucide-react";
 import { Product } from "@/types/product";
@@ -21,6 +21,18 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
 
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  // Get current color's images
+  const currentImages = useMemo(() => {
+    if (product.colorVariants) {
+      const variant = product.colorVariants.find(
+        (v) => v.color === selectedColor
+      );
+      return variant ? variant.images : product.images;
+    }
+    return product.images;
+  }, [product, selectedColor]);
 
   useEffect(() => {
     if (modalRef.current && contentRef.current) {
@@ -37,12 +49,29 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
     }
   }, []);
 
+  // Animate image change when color changes
+  useEffect(() => {
+    if (imageRef.current) {
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
+      );
+    }
+  }, [selectedColor, selectedImage]);
+
+  // Reset selected image when color changes
+  const handleColorChange = (color: string) => {
+    setSelectedColor(color);
+    setSelectedImage(0); // Reset to first image of new color
+  };
+
   const handleAddToCart = () => {
     console.log("Adding to cart:", {
       productId: product.id,
       name: product.name,
       price: product.price,
-      image: product.images[selectedImage],
+      image: currentImages[selectedImage],
       color: selectedColor,
       size: selectedSize,
       quantity,
@@ -52,7 +81,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
       productId: product.id,
       name: product.name,
       price: product.price,
-      image: product.images[selectedImage],
+      image: currentImages[selectedImage],
       color: selectedColor,
       size: selectedSize,
       quantity,
@@ -111,7 +140,10 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
             <h2 className="text-2xl font-bold text-black">{product.name}</h2>
           </div>
           <div className="flex gap-2">
-            <button className="p-2 hover:bg-black/5 rounded-full">
+            <button
+              onClick={handleClose}
+              className="p-2 hover:bg-black/5 rounded-full"
+            >
               <X size={20} className="text-black/60" />
             </button>
           </div>
@@ -120,22 +152,29 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Images */}
           <div className="space-y-4">
-            <div className="aspect-square bg-gray-100 overflow-hidden">
+            <div className="aspect-square bg-gray-100 overflow-hidden relative">
               <img
-                src={product.images[selectedImage]}
-                alt={product.name}
+                ref={imageRef}
+                src={currentImages[selectedImage]}
+                alt={`${product.name} - ${selectedColor}`}
                 className="w-full h-full object-cover"
               />
+              {/* Color indicator badge */}
+              <div className="absolute top-4 right-4 bg-black/80 text-white px-3 py-1 text-xs font-medium rounded-full">
+                {selectedColor}
+              </div>
             </div>
 
             {/* Thumbnails */}
-            <div className="flex gap-2">
-              {product.images.map((image, index) => (
+            <div className="flex gap-2 overflow-x-auto">
+              {currentImages.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`w-20 h-20 bg-gray-100 ${
-                    selectedImage === index ? "ring-2 ring-black" : ""
+                  className={`flex-shrink-0 w-20 h-20 bg-gray-100 transition-all ${
+                    selectedImage === index
+                      ? "ring-2 ring-black scale-105"
+                      : "hover:ring-1 hover:ring-gray-300"
                   }`}
                 >
                   <img
@@ -160,18 +199,42 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
             {/* Color Selection */}
             <div>
               <h4 className="font-medium mb-3">Color: {selectedColor} *</h4>
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 {product.colors.map((color) => (
                   <button
                     key={color}
-                    onClick={() => setSelectedColor(color)}
-                    className={`w-8 h-8 rounded-full border ${
+                    onClick={() => handleColorChange(color)}
+                    className={`relative w-10 h-10 rounded-full border-2 transition-all ${
                       selectedColor === color
-                        ? "ring-2 ring-offset-2 ring-black"
-                        : "border-gray-200"
+                        ? "ring-2 ring-offset-2 ring-black scale-110"
+                        : "border-gray-300 hover:border-gray-400"
                     }`}
                     style={{ backgroundColor: color.toLowerCase() }}
-                  />
+                    title={color}
+                  >
+                    {/* Checkmark for selected color */}
+                    {selectedColor === color && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="3"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          style={{
+                            filter:
+                              color.toLowerCase() === "white"
+                                ? "invert(1)"
+                                : "none",
+                          }}
+                        >
+                          <path d="M5 13l4 4L19 7"></path>
+                        </svg>
+                      </div>
+                    )}
+                  </button>
                 ))}
               </div>
             </div>

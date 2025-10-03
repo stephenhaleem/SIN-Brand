@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { Product } from "@/types/product";
 
@@ -12,6 +12,14 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+
+  // Get the first image from the first color variant or fallback to default
+  const displayImage = useMemo(() => {
+    if (product.colorVariants && product.colorVariants.length > 0) {
+      return product.colorVariants[0].images[0];
+    }
+    return product.images[0];
+  }, [product]);
 
   useEffect(() => {
     if (cardRef.current) {
@@ -88,7 +96,7 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
       <div className="aspect-square overflow-hidden relative">
         <img
           ref={imageRef}
-          src={product.images[0]}
+          src={displayImage}
           alt={product.name}
           className="w-full h-full object-cover"
         />
@@ -130,7 +138,11 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
                         ? "bg-black border-black group-hover:border-white"
                         : color === "White"
                         ? "bg-white border-foreground/30 group-hover:border-white"
-                        : "bg-gray-500 border-gray-400"
+                        : color === "Gray"
+                        ? "bg-gray-500 border-gray-400 group-hover:border-white"
+                        : color === "Charcoal"
+                        ? "bg-gray-700 border-gray-600 group-hover:border-white"
+                        : "bg-gray-500 border-gray-400 group-hover:border-white"
                     }`}
                   />
                 ))}

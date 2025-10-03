@@ -1,9 +1,23 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/autoplay";
+import { Autoplay } from "swiper/modules";
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Detect screen size once
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     if (heroRef.current) {
@@ -28,30 +42,57 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-background">
-      {/* Video Background */}
+      {/* Background */}
       <div className="absolute inset-0 w-full h-full">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src="/images/Ade.mp4" type="video/mp4" />
-        </video>
+        {isMobile ? (
+          // Show Image Carousel on Mobile
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop
+            className="w-full h-full"
+          >
+            <SwiperSlide>
+              <img
+                src="/images/DSCF3553.jpg"
+                alt="Slide 1"
+                className="w-full h-full object-cover"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src="/images/DSCF3708-2.jpg"
+                alt="Slide 2"
+                className="w-full h-full object-cover"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src="/images/DSCF3680-2.jpg"
+                alt="Slide 3"
+                className="w-full h-full object-cover"
+              />
+            </SwiperSlide>
+          </Swiper>
+        ) : (
+          // Show Video on Desktop
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/images/Ade.mp4" type="video/mp4" />
+          </video>
+        )}
+
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
       </div>
 
-      {/* Animated Text Pattern */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-10">
-        <div className="whitespace-nowrap text-[120px] md:text-[280px] font-black text-white tracking-wider">
-          SIN × REVENGE
-        </div>
-      </div>
-
-      {/* Content */}
+      {/* Content (same as before) */}
       <div
         ref={heroRef}
         className="relative z-10 container mx-auto px-6 md:px-12 min-h-screen flex flex-col justify-center items-start"
@@ -71,37 +112,14 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
-            <button
-              onClick={() =>
-                document
-                  .getElementById("shop")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="hero-button group bg-white text-black px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
-            >
-              EXPLORE COLLECTION
-              <span className="text-xl md:text-2xl group-hover:translate-x-2 transition-transform duration-300">
-                →
-              </span>
+            <button className="hero-button group bg-white text-black px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3 shadow-2xl">
+              EXPLORE COLLECTION →
             </button>
-
-            <button
-              onClick={() =>
-                document
-                  .getElementById("gallery")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="group bg-transparent text-white px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3"
-            >
-              VIEW LOOKBOOK
-              <span className="text-xl md:text-2xl group-hover:translate-x-2 transition-transform duration-300">
-                →
-              </span>
+            <button className="group bg-transparent text-white px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3">
+              VIEW LOOKBOOK →
             </button>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
       </div>
     </section>
   );

@@ -1,21 +1,19 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProductCard from "./ProductCard";
+import ProductModal from "./ProductModal";
 import { Product } from "@/types/product";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface ProductsSectionProps {
   products: Product[];
-  onProductSelect: (product: Product) => void;
 }
 
-const ProductsSection = ({
-  products,
-  onProductSelect,
-}: ProductsSectionProps) => {
+const ProductsSection = ({ products }: ProductsSectionProps) => {
   const productsRef = useRef<HTMLDivElement>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     if (productsRef.current) {
@@ -52,27 +50,39 @@ const ProductsSection = ({
       className="py-20 md:py-32 px-6 md:px-12 bg-secondary/30"
     >
       <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
         <div className="text-center mb-16 md:mb-24">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter text-foreground">
             THE COLLECTION
           </h2>
           <div className="w-32 md:w-48 h-1 bg-foreground mx-auto mb-8"></div>
           <p className="text-center text-muted-foreground text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
-            Handpicked pieces forged in the spirit of rebellion. 
-            <span className="block mt-2 font-medium">Each item carries the essence of streetwear culture.</span>
+            Handpicked pieces forged in the spirit of rebellion.
+            <span className="block mt-2 font-medium">
+              Each item carries the essence of streetwear culture.
+            </span>
           </p>
         </div>
 
+        {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 justify-items-center">
           {products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
-              onClick={() => onProductSelect(product)}
+              onClick={() => setSelectedProduct(product)}
             />
           ))}
         </div>
       </div>
+
+      {/* Product Modal with Color Variant Switching */}
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
     </section>
   );
 };
