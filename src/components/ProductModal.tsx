@@ -35,6 +35,9 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
   }, [product, selectedColor]);
 
   useEffect(() => {
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    
     if (modalRef.current && contentRef.current) {
       gsap.fromTo(
         modalRef.current,
@@ -47,6 +50,11 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         { scale: 1, opacity: 1, rotateY: 0, duration: 0.6, ease: "power3.out" }
       );
     }
+
+    return () => {
+      // Re-enable body scroll when modal closes
+      document.body.style.overflow = 'unset';
+    };
   }, []);
 
   // Animate image change when color changes
@@ -120,7 +128,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
   return (
     <div
       ref={modalRef}
-      className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 overflow-y-auto"
       onClick={handleClose}
     >
       <div
