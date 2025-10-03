@@ -47,7 +47,7 @@ export const products: Product[] = [
     ],
     colors: ["Pink", "Gray"],
     sizes: ["One Size"],
-    description: "Classic skull cap with embroidered logo",
+    description: "Cozy hoodie with embroidered logo",
   },
   {
     id: "3",
@@ -66,7 +66,7 @@ export const products: Product[] = [
     ],
     colors: ["Black", "Gray"],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    description: "Bold skull graphic tee with grunge aesthetics",
+    description: "Comfort-fit joggers with embroidered logo",
   },
   {
     id: "4",
@@ -75,73 +75,35 @@ export const products: Product[] = [
     images: ["/images/tee4.jpg"],
     colorVariants: [
       {
-        color: "Black",
-        images: ["/images/tee4.jpg"],
+        color: "Gray",
+        images: ["/images/skull.jpg", "images/skull1.jpg"],
       },
       {
         color: "White",
         images: ["/images/tee4-white.jpg"],
       },
     ],
-    colors: ["Black", "White"],
-    sizes: ["S", "M", "L", "XL"],
-    description: "Statement rock tee with edgy design",
+    colors: ["Gray", "White"],
+    sizes: ["One Size"],
+    description: "Classic skullcap with embroidered logo",
   },
   {
     id: "5",
-    name: "County Hoodie",
+    name: "2 piece Hoodie and Jogger Set",
     price: 45000,
     images: ["/images/full1.jpg"],
     colorVariants: [
       {
-        color: "Black",
+        color: "Gray",
+        images: ["/images/2 grey.jpg"],
+      },
+      {
+        color: "Pinkk",
         images: ["/images/full1.jpg"],
       },
-      {
-        color: "Gray",
-        images: ["/images/full1-gray.jpg"],
-      },
     ],
-    colors: ["Black", "Gray"],
+    colors: ["Gray", "Pink"],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    description: "Premium hoodie with county branding",
-  },
-  {
-    id: "6",
-    name: "Grunge Jacket",
-    price: 65000,
-    images: ["/images/ff.jpg"],
-    colorVariants: [
-      {
-        color: "Black",
-        images: ["/images/ff.jpg"],
-      },
-      {
-        color: "Charcoal",
-        images: ["/images/ff-charcoal.jpg"],
-      },
-    ],
-    colors: ["Black", "Charcoal"],
-    sizes: ["S", "M", "L", "XL"],
-    description: "Distressed jacket with authentic grunge appeal",
-  },
-  {
-    id: "7",
-    name: "Grunge Jacket",
-    price: 65000,
-    images: ["/images/ff.jpg"],
-    colorVariants: [
-      {
-        color: "Black",
-        images: ["/images/ff.jpg"],
-      },
-      {
-        color: "Charcoal",
-        images: ["/images/ff-charcoal.jpg"],
-      },
-    ],
-    colors: ["Black", "Charcoal"],
-    sizes: ["S", "M", "L", "XL"],
-    description: "Distressed jacket with authentic grunge appeal",
+    description: "Matching hoodie and jogger set with embroidered logo",
   },
 ];
