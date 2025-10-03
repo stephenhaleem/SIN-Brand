@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "@/components/Header";
 import Marquee from "@/components/Marquee";
@@ -22,17 +21,17 @@ const Index = () => {
       <main className="pt-20">
         <HeroSection />
         <ProductsSection products={products} />
-        
+
         <div id="gallery">
           <Gallery />
         </div>
-        
+
         <Newsletter />
       </main>
       <Footer />
-      
+
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      
+
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}

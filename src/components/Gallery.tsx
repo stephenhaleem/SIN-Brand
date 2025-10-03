@@ -50,7 +50,7 @@ const Gallery = () => {
   const isVideo = (file: string) => file.endsWith(".mp4");
 
   return (
-    <section className="py-20 px-6 bg-white text-black">
+    <section className="py-20 px-6 bg-white text-black" id="gallery">
       {/* Section Title */}
       <div className="text-center mb-16">
         <h3 className="text-4xl font-bold mb-4 tracking-wider text-black font-shadows">

@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useNavigate } from "react-router-dom";
-import { countries } from "@/lib/countries"; // You'll need to create this file
+import { countries } from "@/lib/countries";
 
 const checkoutSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -60,48 +60,32 @@ const Checkout = () => {
       return;
     }
 
-    if (pageRef.current) {
-      gsap.fromTo(
-        pageRef.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-      );
-    }
+    gsap.fromTo(
+      pageRef.current,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+    );
 
     if (formRef.current) {
-      const formElements = formRef.current.querySelectorAll(".form-item");
       gsap.fromTo(
-        formElements,
-        { opacity: 0, x: -30 },
+        formRef.current.querySelectorAll(".form-item"),
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
-          x: 0,
+          y: 0,
           duration: 0.6,
           stagger: 0.1,
-          ease: "power3.out",
+          ease: "power2.out",
           delay: 0.3,
         }
       );
     }
   }, [cartItems.length, navigate]);
 
-  const formatPrice = (price: number) => {
-    return `₦${price.toLocaleString()}`;
-  };
+  const formatPrice = (price: number) => `₦${price.toLocaleString()}`;
 
   const onSubmit = (data: CheckoutFormData) => {
-    // Generate order ID
     const orderId = `RC${Date.now().toString().slice(-6)}`;
-
-    // Create order summary
-    const orderItems = cartItems
-      .map(
-        (item) =>
-          `${item.name} (${item.color}, ${item.size}) x${
-            item.quantity
-          } - ${formatPrice(item.price * item.quantity)}`
-      )
-      .join("\n");
 
     const orderSummary = `
  *SIN REVENGE ORDER CONFIRMATION*
@@ -119,19 +103,23 @@ ${data.city}, ${data.state} ${data.zipCode}
 ${data.country}
 
  *Order Items:*
-${orderItems}
+${cartItems
+  .map(
+    (item) =>
+      `${item.name} (${item.color}, ${item.size}) x${
+        item.quantity
+      } - ${formatPrice(item.price * item.quantity)}`
+  )
+  .join("\n")}
 
 💰 *Total: ${formatPrice(totalPrice)}*
-
     `;
 
-    // Create WhatsApp link
-    const phoneNumber = "+2348106771807"; // Replace with actual business WhatsApp number
+    const phoneNumber = "+2348106771807";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       orderSummary
     )}`;
 
-    // Clear cart and redirect to WhatsApp
     clearCart();
     window.open(whatsappUrl, "_blank");
     navigate("/");
@@ -140,97 +128,101 @@ ${orderItems}
   return (
     <div
       ref={pageRef}
-      className="min-h-screen bg-white text-black p-6 relative overflow-hidden"
+      className="min-h-screen bg-gradient-to-br from-white to-gray-50 text-black px-6 py-10 relative"
     >
-      {/* Marquee Text Overlay */}
-      <div className="absolute inset-0 flex items-center pointer-events-none overflow-hidden opacity-[0.03]">
-        <div className="whitespace-nowrap text-[200px] font-bold tracking-wider animate-marquee">
-          SIN ◆ REVENGE ◆ SIN ◆ REVENGE ◆ SIN ◆ REVENGE ◆ SIN ◆ REVENGE
+      {/* Marquee Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-[0.02]">
+        <div className="whitespace-nowrap text-[180px] font-extrabold tracking-widest animate-marquee">
+          SIN ◆ REVENGE ◆ SIN ◆ REVENGE ◆ SIN ◆ REVENGE
         </div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center justify-between mb-10">
           <button
             onClick={() => navigate("/")}
-            className="font-shadows text-2xl font-bold tracking-wider rounded-lg px-4 py-2"
+            className="font-shadows text-lg font-semibold tracking-wide rounded-md px-4 py-2 hover:bg-gray-100 transition"
           >
-            ← SIN
+            ← Continue Shopping
           </button>
-          <h1 className="font-shadows text-4xl font-bold tracking-wider">
-            CHECKOUT
+          <h1 className="font-shadows text-4xl md:text-5xl font-bold tracking-widest">
+            Checkout
           </h1>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-10">
           {/* Order Summary */}
-          <div className="border-2 border-black p-8 rounded-lg">
-            <h2 className="font-shadows text-2xl font-bold mb-6 tracking-wider">
-              ORDER SUMMARY
+          <div className="bg-white border border-gray-200 shadow-xl rounded-2xl p-8">
+            <h2 className="text-xl font-bold mb-6 tracking-wider text-gray-900">
+              Order Summary
             </h2>
-            <div className="space-y-4 mb-6">
+            <div className="space-y-6 mb-6">
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="flex justify-between items-center border-b border-gray-200 pb-4"
+                  className="flex justify-between items-center border-b border-gray-100 pb-4"
                 >
                   <div className="flex gap-4">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-16 h-16 object-cover border border-black rounded-md"
+                      className="w-16 h-16 object-cover border border-gray-300 rounded-lg"
                     />
                     <div>
-                      <h3 className="font-bold text-sm">{item.name}</h3>
-                      <p className="text-sm text-gray-600">
+                      <h3 className="font-semibold text-sm">{item.name}</h3>
+                      <p className="text-xs text-gray-500">
                         {item.color} • {item.size}
                       </p>
-                      <p className="text-sm">Qty: {item.quantity}</p>
+                      <p className="text-xs text-gray-600">
+                        Qty: {item.quantity}
+                      </p>
                     </div>
                   </div>
-                  <p className="font-bold">
+                  <p className="font-bold text-gray-800">
                     {formatPrice(item.price * item.quantity)}
                   </p>
                 </div>
               ))}
             </div>
 
-            {/* Promo Code Section */}
-            <div className="border-t-2 border-black pt-4 mt-4">
+            {/* Promo Code */}
+            <div className="border-t pt-4">
               <div className="flex gap-2 mb-4">
                 <Input
                   placeholder="Enter promo code"
-                  className="border-black rounded-md uppercase"
+                  className="rounded-lg border-gray-300 focus:ring-2 focus:ring-black"
                   {...form.register("promoCode")}
                 />
                 <Button
                   type="button"
                   onClick={() => setPromoApplied(true)}
-                  className="bg-black text-white hover:bg-gray-800 px-4"
+                  className="bg-black text-white rounded-lg hover:bg-gray-800 transition"
                 >
                   Apply
                 </Button>
               </div>
               {promoApplied && (
                 <p className="text-sm text-green-600 mb-4">
-                  Promo code applied successfully!
+                  ✅ Promo code applied successfully!
                 </p>
               )}
-              <div className="flex justify-between items-center text-xl font-bold">
-                <span>TOTAL:</span>
-                <span>{formatPrice(totalPrice)}</span>
+              <div className="flex justify-between items-center text-lg font-semibold">
+                <span>Total:</span>
+                <span className="text-xl font-bold">
+                  {formatPrice(totalPrice)}
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Checkout Form */}
+          {/* Shipping Form */}
           <div
             ref={formRef}
-            className="border-2 border-black p-8 rounded-lg backdrop-blur-sm relative"
+            className="bg-white border border-gray-200 shadow-xl rounded-2xl p-8"
           >
-            <h2 className="font-shadows text-2xl font-bold mb-6 tracking-wider">
-              SHIPPING DETAILS
+            <h2 className="text-xl font-bold mb-6 tracking-wider text-gray-900">
+              Shipping Details
             </h2>
 
             <Form {...form}>
@@ -244,13 +236,11 @@ ${orderItems}
                     name="firstName"
                     render={({ field }) => (
                       <FormItem className="form-item">
-                        <FormLabel className="font-bold tracking-wider">
-                          FIRST NAME
-                        </FormLabel>
+                        <FormLabel>First Name</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            className="border-black rounded-md"
+                            className="rounded-lg border-gray-300"
                           />
                         </FormControl>
                         <FormMessage />
@@ -262,13 +252,11 @@ ${orderItems}
                     name="lastName"
                     render={({ field }) => (
                       <FormItem className="form-item">
-                        <FormLabel className="font-bold tracking-wider">
-                          LAST NAME
-                        </FormLabel>
+                        <FormLabel>Last Name</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            className="border-black rounded-md"
+                            className="rounded-lg border-gray-300"
                           />
                         </FormControl>
                         <FormMessage />
@@ -282,14 +270,12 @@ ${orderItems}
                   name="email"
                   render={({ field }) => (
                     <FormItem className="form-item">
-                      <FormLabel className="font-bold tracking-wider">
-                        EMAIL
-                      </FormLabel>
+                      <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="email"
-                          className="border-black rounded-md"
+                          className="rounded-lg border-gray-300"
                         />
                       </FormControl>
                       <FormMessage />
@@ -302,11 +288,12 @@ ${orderItems}
                   name="phone"
                   render={({ field }) => (
                     <FormItem className="form-item">
-                      <FormLabel className="font-bold tracking-wider">
-                        PHONE
-                      </FormLabel>
+                      <FormLabel>Phone</FormLabel>
                       <FormControl>
-                        <Input {...field} className="border-black rounded-md" />
+                        <Input
+                          {...field}
+                          className="rounded-lg border-gray-300"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -318,11 +305,12 @@ ${orderItems}
                   name="address"
                   render={({ field }) => (
                     <FormItem className="form-item">
-                      <FormLabel className="font-bold tracking-wider">
-                        ADDRESS
-                      </FormLabel>
+                      <FormLabel>Address</FormLabel>
                       <FormControl>
-                        <Input {...field} className="border-black rounded-md" />
+                        <Input
+                          {...field}
+                          className="rounded-lg border-gray-300"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -335,13 +323,11 @@ ${orderItems}
                     name="city"
                     render={({ field }) => (
                       <FormItem className="form-item">
-                        <FormLabel className="font-bold tracking-wider">
-                          CITY
-                        </FormLabel>
+                        <FormLabel>City</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            className="border-black rounded-md"
+                            className="rounded-lg border-gray-300"
                           />
                         </FormControl>
                         <FormMessage />
@@ -353,13 +339,11 @@ ${orderItems}
                     name="state"
                     render={({ field }) => (
                       <FormItem className="form-item">
-                        <FormLabel className="font-bold tracking-wider">
-                          STATE
-                        </FormLabel>
+                        <FormLabel>State</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            className="border-black rounded-md"
+                            className="rounded-lg border-gray-300"
                           />
                         </FormControl>
                         <FormMessage />
@@ -374,13 +358,11 @@ ${orderItems}
                     name="country"
                     render={({ field }) => (
                       <FormItem className="form-item">
-                        <FormLabel className="font-bold tracking-wider">
-                          COUNTRY
-                        </FormLabel>
+                        <FormLabel>Country</FormLabel>
                         <FormControl>
                           <select
                             {...field}
-                            className="w-full border-2 border-black rounded-md p-2 bg-white"
+                            className="w-full border rounded-lg border-gray-300 p-2 bg-white focus:ring-2 focus:ring-black"
                           >
                             <option value="">Select Country</option>
                             {countries.map((country) => (
@@ -399,13 +381,11 @@ ${orderItems}
                     name="zipCode"
                     render={({ field }) => (
                       <FormItem className="form-item">
-                        <FormLabel className="font-bold tracking-wider">
-                          ZIP CODE
-                        </FormLabel>
+                        <FormLabel>ZIP Code</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            className="border-black rounded-md"
+                            className="rounded-lg border-gray-300"
                           />
                         </FormControl>
                         <FormMessage />
@@ -416,9 +396,9 @@ ${orderItems}
 
                 <Button
                   type="submit"
-                  className="w-full bg-black text-white hover:bg-white hover:text-black border-2 border-black font-bold tracking-wider py-4 text-lg rounded-lg"
+                  className="w-full bg-black text-white rounded-lg py-4 text-lg font-semibold hover:bg-gray-800 transition"
                 >
-                  PROCEED TO ORDER
+                  Proceed to Order
                 </Button>
               </form>
             </Form>

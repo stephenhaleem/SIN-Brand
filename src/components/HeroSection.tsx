@@ -92,7 +92,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
       </div>
 
-      {/* Content (same as before) */}
+      {/* Content */}
       <div
         ref={heroRef}
         className="relative z-10 container mx-auto px-6 md:px-12 h-screen flex flex-col justify-center items-start"
@@ -112,10 +112,24 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
-            <button className="hero-button group bg-white text-black px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3 shadow-2xl">
+            <button
+              onClick={() =>
+                document
+                  .getElementById("shop")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="hero-button group bg-white text-black px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
+            >
               EXPLORE COLLECTION →
             </button>
-            <button className="group bg-transparent text-white px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3">
+            <button
+              onClick={() =>
+                document
+                  .getElementById("gallery")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="group bg-transparent text-white px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3"
+            >
               VIEW LOOKBOOK →
             </button>
           </div>
