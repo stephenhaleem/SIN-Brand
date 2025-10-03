@@ -27,8 +27,9 @@ import StyleGuide from "./pages/StyleGuide";
 import MixMatch from "./pages/MixMatch";
 import SeasonalLooks from "./pages/SeasonalLooks";
 import CareInstructions from "./pages/CareInstructions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
+import Loader from "./components/Loader";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,8 @@ function isDesktop() {
 }
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (!isDesktop()) return;
 
@@ -63,6 +66,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         <TooltipProvider>
+          {loading && <Loader onComplete={() => setLoading(false)} />}
           <Toaster />
           <Sonner />
           <BrowserRouter>
