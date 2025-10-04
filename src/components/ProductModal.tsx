@@ -17,6 +17,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,10 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
+    
+    // Simulate loading
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    
     if (modalRef.current && contentRef.current) {
       gsap.fromTo(
         modalRef.current,
@@ -48,6 +53,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
     }
     return () => {
       document.body.style.overflow = "unset";
+      clearTimeout(timer);
     };
   }, []);
 
@@ -120,6 +126,16 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         className="bg-white relative max-w-6xl w-full max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl p-8"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* LOADING OVERLAY */}
+        {isLoading && (
+          <div className="absolute inset-0 bg-white z-50 flex items-center justify-center rounded-2xl">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-16 h-16 border-4 border-black/20 border-t-black rounded-full animate-spin" />
+              <p className="text-black font-semibold">Loading...</p>
+            </div>
+          </div>
+        )}
+
         {/* OUT OF STOCK OVERLAY */}
         {isOutOfStock && (
           <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center rounded-2xl">

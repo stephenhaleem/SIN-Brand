@@ -38,6 +38,7 @@ const Checkout = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const [promoApplied, setPromoApplied] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
@@ -85,6 +86,8 @@ const Checkout = () => {
   const formatPrice = (price: number) => `₦${price.toLocaleString()}`;
 
   const onSubmit = (data: CheckoutFormData) => {
+    setIsSubmitting(true);
+    
     const orderId = `RC${Date.now().toString().slice(-6)}`;
 
     const orderSummary = `
@@ -120,9 +123,12 @@ ${cartItems
       orderSummary
     )}`;
 
-    clearCart();
-    window.open(whatsappUrl, "_blank");
-    navigate("/");
+    // Simulate processing delay
+    setTimeout(() => {
+      clearCart();
+      window.open(whatsappUrl, "_blank");
+      navigate("/");
+    }, 1500);
   };
 
   return (
@@ -130,6 +136,15 @@ ${cartItems
       ref={pageRef}
       className="min-h-screen bg-gradient-to-br from-white to-gray-50 text-black px-6 py-10 relative"
     >
+      {/* SUBMITTING OVERLAY */}
+      {isSubmitting && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
+          <div className="bg-white rounded-2xl p-8 flex flex-col items-center gap-4 shadow-2xl">
+            <div className="w-16 h-16 border-4 border-black/20 border-t-black rounded-full animate-spin" />
+            <p className="text-black font-semibold text-lg">Processing your order...</p>
+          </div>
+        </div>
+      )}
       {/* Marquee Background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-[0.02]">
         <div className="whitespace-nowrap text-[180px] font-extrabold tracking-widest animate-marquee">
@@ -396,9 +411,10 @@ ${cartItems
 
                 <Button
                   type="submit"
-                  className="w-full bg-black text-white rounded-lg py-4 text-lg font-semibold hover:bg-gray-800 transition"
+                  disabled={isSubmitting}
+                  className="w-full bg-black text-white rounded-lg py-4 text-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Proceed to Order
+                  {isSubmitting ? "Processing..." : "Proceed to Order"}
                 </Button>
               </form>
             </Form>
