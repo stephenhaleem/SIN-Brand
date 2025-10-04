@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
 interface HeaderProps {
@@ -49,11 +49,11 @@ const Header = ({ onCartOpen }: HeaderProps) => {
 
       <button
         onClick={onCartOpen}
-        className="relative p-2 border-2 border-foreground hover:bg-foreground hover:text-background transition-all duration-300"
+        className="relative p-2 border-2 border-foreground hover:bg-foreground hover:text-background transition-all duration-300 group"
       >
-        <ShoppingBag size={16} className="md:w-5 md:h-5" />
+        <ShoppingCart size={16} className="md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
         {totalItems > 0 && (
-          <span className="absolute -top-2 -right-2 w-4 h-4 md:w-5 md:h-5 bg-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
+          <span className="absolute -top-2 -right-2 w-4 h-4 md:w-5 md:h-5 bg-foreground text-background text-xs font-bold rounded-full flex items-center justify-center animate-pulse">
             {totalItems}
           </span>
         )}

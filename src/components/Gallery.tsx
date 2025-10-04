@@ -1,7 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Download, ChevronLeft, ChevronRight, X } from "lucide-react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Gallery = () => {
+  const galleryRef = useRef<HTMLDivElement>(null);
+  
   const leftImages = [
     "/images/DSCF3448.jpg",
     "/images/DSCF3689-2.jpg",
@@ -19,6 +25,29 @@ const Gallery = () => {
   const allMedia = [...leftImages, ...rightImages];
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  
+  // Animate gallery items on scroll
+  useEffect(() => {
+    if (galleryRef.current) {
+      const items = galleryRef.current.querySelectorAll(".gallery-item");
+      gsap.fromTo(
+        items,
+        { opacity: 0, y: 50, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: galleryRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+  }, []);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -63,11 +92,11 @@ const Gallery = () => {
       </div>
 
       {/* Gallery Grid */}
-      <div className="grid md:grid-cols-2 gap-4 max-w-[1600px] mx-auto">
+      <div ref={galleryRef} className="grid md:grid-cols-2 gap-4 max-w-[1600px] mx-auto">
         {allMedia.map((file, index) => (
           <div
             key={index}
-            className="aspect-video overflow-hidden rounded-xl shadow-lg relative group cursor-pointer"
+            className="gallery-item aspect-video overflow-hidden rounded-xl shadow-lg relative group cursor-pointer hover:shadow-2xl transition-shadow duration-300"
             onClick={() => setCurrentIndex(index)}
           >
             {isVideo(file) ? (

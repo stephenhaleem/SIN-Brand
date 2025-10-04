@@ -72,11 +72,11 @@ const BrandStory = () => {
                 create pieces for those who refuse to blend in.
               </p>
             </div>
-            <div className="aspect-square bg-gradient-to-br from-white/10 to-transparent rounded-2xl" />
+            <div className="aspect-square bg-gradient-to-br from-white/10 to-transparent rounded-2xl animate-float" />
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="aspect-square bg-gradient-to-br from-white/10 to-transparent rounded-2xl order-2 md:order-1" />
+            <div className="aspect-square bg-gradient-to-br from-white/10 to-transparent rounded-2xl order-2 md:order-1 animate-float" style={{ animationDelay: "1s" }} />
             <div className="space-y-6 order-1 md:order-2">
               <h3 className="text-3xl font-bold">Crafted with Purpose</h3>
               <p className="text-gray-300 text-lg leading-relaxed">

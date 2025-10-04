@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
+import { ArrowRight } from "lucide-react";
 import { Product } from "@/types/product";
 
 interface ProductCardProps {
@@ -145,6 +146,10 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
           <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/80 transition-colors duration-300 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
+          <div className="flex items-center gap-2 text-sm font-bold text-card-foreground group-hover:text-primary-foreground transition-all duration-300">
+            <span>View Details</span>
+            <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={16} />
+          </div>
         </div>
       </div>
     </div>

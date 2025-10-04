@@ -70,11 +70,12 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-black/10 hover:border-black transition-all duration-300 hover:shadow-xl group"
+              className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-black/10 hover:border-black transition-all duration-300 hover:shadow-xl group animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="mb-6">
-                <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <feature.icon className="text-white" size={32} />
+                <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform animate-pulse-subtle">
+                  <feature.icon className="text-white transition-transform group-hover:rotate-12" size={32} />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>

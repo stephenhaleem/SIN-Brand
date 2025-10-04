@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { ArrowRight, Eye } from "lucide-react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
@@ -118,9 +119,10 @@ const HeroSection = () => {
                   .getElementById("shop")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="hero-button group bg-white text-black px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
+              className="hero-button group bg-white text-black px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-black hover:text-white border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3 shadow-2xl overflow-hidden relative"
             >
-              EXPLORE COLLECTION →
+              <span className="relative z-10">EXPLORE COLLECTION</span>
+              <ArrowRight className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" size={20} />
             </button>
             <button
               onClick={() =>
@@ -130,7 +132,8 @@ const HeroSection = () => {
               }
               className="group bg-transparent text-white px-6 py-3 md:px-10 md:py-5 text-sm md:text-lg font-bold tracking-wider hover:bg-white hover:text-black border-2 border-white transition-all duration-500 flex items-center justify-center gap-2 md:gap-3"
             >
-              VIEW LOOKBOOK →
+              <span>VIEW LOOKBOOK</span>
+              <Eye className="transition-transform duration-300 group-hover:scale-110" size={20} />
             </button>
           </div>
         </div>
