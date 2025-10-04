@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { X, Plus, Minus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
@@ -14,6 +14,7 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
   const { cartItems, updateQuantity, removeFromCart, totalPrice } = useCart();
   const cartRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
     if (cartRef.current) {
@@ -34,8 +35,11 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
   }, [isOpen]);
 
   const handleCheckout = () => {
-    onClose();
-    navigate("/checkout");
+    setIsNavigating(true);
+    setTimeout(() => {
+      onClose();
+      navigate("/checkout");
+    }, 1000);
   };
 
   const formatPrice = (price: number) => {
@@ -46,6 +50,16 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
 
   return (
     <>
+      {/* Loading Overlay */}
+      {isNavigating && (
+        <div className="fixed inset-0 bg-black/70 z-[60] flex items-center justify-center">
+          <div className="bg-white rounded-2xl p-8 flex flex-col items-center gap-4 shadow-2xl">
+            <div className="w-16 h-16 border-4 border-black/20 border-t-black rounded-full animate-spin" />
+            <p className="text-black font-semibold text-lg">Loading checkout...</p>
+          </div>
+        </div>
+      )}
+
       {/* Overlay */}
       <div className="fixed inset-0 bg-black/80 z-40" onClick={onClose} />
 
@@ -146,9 +160,10 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
 
             <button
               onClick={handleCheckout}
-              className="w-full bg-gray-900 text-white py-4 hover:bg-black"
+              disabled={isNavigating}
+              className="w-full bg-gray-900 text-white py-4 hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Checkout
+              {isNavigating ? "Loading..." : "Checkout"}
             </button>
 
             <button
