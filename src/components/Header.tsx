@@ -41,7 +41,7 @@ const Header = ({ onCartOpen }: HeaderProps) => {
       <div className="flex items-center gap-2 md:gap-4">
         {/* Replace R and SIN with PNG logo */}
         <img
-          src="/images/logo.png" // <- update with the path to your logo file
+          src="/images/logo2.png" // <- update with the path to your logo file
           alt="Logo"
           className="h-8 md:h-12 w-auto" // keep height responsive, width adjusts automatically
         />
@@ -51,7 +51,10 @@ const Header = ({ onCartOpen }: HeaderProps) => {
         onClick={onCartOpen}
         className="relative p-2 border-2 border-foreground hover:bg-foreground hover:text-background transition-all duration-300 group"
       >
-        <ShoppingCart size={16} className="md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
+        <ShoppingCart
+          size={16}
+          className="md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
+        />
         {totalItems > 0 && (
           <span className="absolute -top-2 -right-2 w-4 h-4 md:w-5 md:h-5 bg-foreground text-background text-xs font-bold rounded-full flex items-center justify-center animate-pulse">
             {totalItems}
