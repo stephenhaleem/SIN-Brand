@@ -53,7 +53,7 @@ const ProductsSection = ({ products }: ProductsSectionProps) => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter text-foreground">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter text-foreground font-shadows">
             THE COLLECTION
           </h2>
           <div className="w-32 md:w-48 h-1 bg-foreground mx-auto mb-8"></div>

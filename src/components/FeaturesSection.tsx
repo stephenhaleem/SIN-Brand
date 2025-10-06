@@ -58,7 +58,7 @@ const FeaturesSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-shadows text-4xl md:text-6xl font-bold mb-4 tracking-wider">
-            WHY SIN REVENGE?
+            WHY REVENGE?
           </h2>
           <div className="w-32 h-1 bg-black mx-auto" />
         </div>
@@ -75,7 +75,10 @@ const FeaturesSection = () => {
             >
               <div className="mb-6">
                 <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform animate-pulse-subtle">
-                  <feature.icon className="text-white transition-transform group-hover:rotate-12" size={32} />
+                  <feature.icon
+                    className="text-white transition-transform group-hover:rotate-12"
+                    size={32}
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
