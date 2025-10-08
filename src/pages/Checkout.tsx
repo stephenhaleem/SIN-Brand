@@ -118,7 +118,7 @@ ${cartItems
 💰 *Total: ${formatPrice(totalPrice)}*
     `;
 
-    const phoneNumber = "+2347079130602";
+    const phoneNumber = "+2348106771807";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       orderSummary
     )}`;
