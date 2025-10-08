@@ -118,12 +118,12 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
   return (
     <div
       ref={modalRef}
-      className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-2 md:p-4"
       onClick={handleClose}
     >
       <div
         ref={contentRef}
-        className="bg-white relative max-w-6xl w-full max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl p-8"
+        className="bg-white relative max-w-6xl w-full max-h-[95vh] md:max-h-[90vh] overflow-y-auto rounded-xl md:rounded-2xl shadow-2xl p-3 md:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* LOADING OVERLAY */}
@@ -146,49 +146,49 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         )}
 
         {/* Header */}
-        <div className="flex justify-between items-center mb-8 border-b pb-4">
+        <div className="flex justify-between items-center mb-4 md:mb-8 border-b pb-2 md:pb-4">
           <div>
             <button
               onClick={handleClose}
-              className="text-sm text-black/60 hover:text-black mb-2 transition-colors"
+              className="text-xs md:text-sm text-black/60 hover:text-black mb-1 md:mb-2 transition-colors"
             >
               ← Back
             </button>
-            <h2 className="text-2xl font-bold text-black">{product.name}</h2>
+            <h2 className="text-lg md:text-2xl font-bold text-black">{product.name}</h2>
           </div>
           <button
             onClick={handleClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition"
+            className="p-1 md:p-2 hover:bg-gray-100 rounded-full transition"
           >
-            <X size={20} className="text-black/70" />
+            <X size={18} className="text-black/70 md:w-5 md:h-5" />
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-12">
           {/* Images */}
           {/* Images */}
-          <div className="space-y-4">
+          <div className="space-y-2 md:space-y-4">
             {/* Main Image */}
-            <div className="aspect-square bg-gray-100 overflow-hidden relative rounded-xl shadow-md">
+            <div className="aspect-square bg-gray-100 overflow-hidden relative rounded-lg md:rounded-xl shadow-md">
               <img
                 ref={imageRef}
                 src={currentImages[selectedImage]}
                 alt={`${product.name} - ${selectedColor}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-4 right-4 bg-black/80 text-white px-3 py-1 text-xs font-medium rounded-full">
+              <div className="absolute top-2 md:top-4 right-2 md:right-4 bg-black/80 text-white px-2 md:px-3 py-0.5 md:py-1 text-xs font-medium rounded-full">
                 {selectedColor}
               </div>
             </div>
 
             {/* Thumbnails */}
             {currentImages.length > 1 && (
-              <div className="flex gap-3 overflow-x-auto">
+              <div className="flex gap-2 md:gap-3 overflow-x-auto">
                 {currentImages.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`w-14 h-14 md:w-20 md:h-20 flex-shrink-0 rounded-md md:rounded-lg overflow-hidden border-2 transition-all ${
                       selectedImage === index
                         ? "border-black scale-105"
                         : "border-gray-200 hover:border-gray-400"
@@ -206,27 +206,27 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
           </div>
 
           {/* Product Details */}
-          <div className="space-y-8">
+          <div className="space-y-4 md:space-y-8">
             <div>
-              <h3 className="text-3xl font-bold mb-2 text-black">
+              <h3 className="text-xl md:text-3xl font-bold mb-1 md:mb-2 text-black">
                 {formatPrice(product.price)}
               </h3>
-              <p className="text-black/60 leading-relaxed">
+              <p className="text-sm md:text-base text-black/60 leading-relaxed">
                 {product.description}
               </p>
             </div>
 
             {/* Controls */}
-            <fieldset disabled={isOutOfStock} className="space-y-6">
+            <fieldset disabled={isOutOfStock} className="space-y-3 md:space-y-6">
               {/* Color */}
               <div>
-                <h4 className="font-medium mb-3">Color: {selectedColor} *</h4>
-                <div className="flex gap-3">
+                <h4 className="font-medium mb-2 md:mb-3 text-sm md:text-base">Color: {selectedColor} *</h4>
+                <div className="flex gap-2 md:gap-3">
                   {product.colors.map((color) => (
                     <button
                       key={color}
                       onClick={() => setSelectedColor(color)}
-                      className={`w-10 h-10 rounded-full border-2 shadow-sm transition-all ${
+                      className={`w-8 h-8 md:w-10 md:h-10 rounded-full border-2 shadow-sm transition-all ${
                         selectedColor === color
                           ? "ring-2 ring-black scale-110"
                           : "border-gray-300 hover:border-gray-400"
@@ -240,11 +240,11 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
 
               {/* Size */}
               <div>
-                <h4 className="font-medium mb-3">Size *</h4>
+                <h4 className="font-medium mb-2 md:mb-3 text-sm md:text-base">Size *</h4>
                 <select
                   value={selectedSize}
                   onChange={(e) => setSelectedSize(e.target.value)}
-                  className="w-full p-3 border border-gray-200 focus:border-black outline-none rounded-lg"
+                  className="w-full p-2 md:p-3 text-sm md:text-base border border-gray-200 focus:border-black outline-none rounded-lg"
                 >
                   {product.sizes.map((size) => (
                     <option key={size} value={size}>
@@ -256,22 +256,22 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
 
               {/* Quantity */}
               <div>
-                <h4 className="font-medium mb-3">Quantity *</h4>
+                <h4 className="font-medium mb-2 md:mb-3 text-sm md:text-base">Quantity *</h4>
                 <div className="flex items-center border border-gray-200 rounded-lg w-fit overflow-hidden">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-4 py-2 hover:bg-gray-50 transition"
+                    className="px-3 md:px-4 py-1.5 md:py-2 hover:bg-gray-50 transition"
                   >
-                    <Minus size={16} />
+                    <Minus size={14} className="md:w-4 md:h-4" />
                   </button>
-                  <span className="px-6 py-2 border-x border-gray-200 font-medium">
+                  <span className="px-4 md:px-6 py-1.5 md:py-2 border-x border-gray-200 font-medium text-sm md:text-base">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-4 py-2 hover:bg-gray-50 transition"
+                    className="px-3 md:px-4 py-1.5 md:py-2 hover:bg-gray-50 transition"
                   >
-                    <Plus size={16} />
+                    <Plus size={14} className="md:w-4 md:h-4" />
                   </button>
                 </div>
               </div>
@@ -281,7 +281,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
             <button
               onClick={handleAddToCart}
               disabled={isOutOfStock}
-              className={`w-full py-4 text-lg font-semibold rounded-xl shadow-md transition ${
+              className={`w-full py-3 md:py-4 text-base md:text-lg font-semibold rounded-lg md:rounded-xl shadow-md transition ${
                 isOutOfStock
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                   : "bg-black text-white hover:bg-black/90"
