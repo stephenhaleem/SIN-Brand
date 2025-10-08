@@ -138,6 +138,17 @@
       opacity: 1;
     }
   }
+
+  /* Performance optimizations */
+  img {
+    will-change: auto;
+  }
+
+  .animate-fade-in,
+  .animate-float,
+  .animate-pulse-subtle {
+    will-change: transform, opacity;
+  }
 }
 
 /* Custom black and white scrollbar for all browsers that support it */

@@ -123,11 +123,11 @@ ${cartItems
       orderSummary
     )}`;
 
-    // Simulate processing delay
+    // Process order and redirect
     setTimeout(() => {
+      setIsSubmitting(false);
       clearCart();
-      window.open(whatsappUrl, "_blank");
-      navigate("/");
+      window.location.href = whatsappUrl;
     }, 1500);
   };
 
