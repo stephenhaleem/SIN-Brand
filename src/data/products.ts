@@ -138,7 +138,7 @@ export const products: Product[] = [
     images: ["/images/fey.jpg"],
     colorVariants: [
       {
-        color: "Gray",
+        color: "darkblue",
         images: ["/images/fey.jpg"],
       },
       {
@@ -146,7 +146,7 @@ export const products: Product[] = [
         images: ["/images/tank1p.jpg", "/images/DSCF3448.jpg"],
       },
     ],
-    colors: ["Gray", "Pink"],
+    colors: ["DarkBlue", "Pink"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     description: "Matching Tanktop and jogger set with embroidered logo",
     available: true,
