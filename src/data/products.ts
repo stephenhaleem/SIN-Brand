@@ -114,7 +114,7 @@ export const products: Product[] = [
   {
     id: "5",
     name: "2 piece Hoodie and Jogger Set",
-    price: 45000,
+    price: 90000,
     images: ["/images/full1.jpg"],
     colorVariants: [
       {
@@ -122,7 +122,7 @@ export const products: Product[] = [
         images: ["/images/2 grey.jpg"],
       },
       {
-        color: "Pinkk",
+        color: "Pink",
         images: ["/images/full1.jpg"],
       },
     ],
@@ -133,8 +133,28 @@ export const products: Product[] = [
   },
   {
     id: "6",
-    name: "Revenge Thumbsleeves",
-    price: 0,
+    name: "2 piece Tanktop and Jogger Set",
+    price: 70000,
+    images: ["/images/fey.jpg"],
+    colorVariants: [
+      {
+        color: "Gray",
+        images: ["/images/fey.jpg"],
+      },
+      {
+        color: "Pink",
+        images: ["/images/tank1p.jpg", "/images/DSCF3448.jpg"],
+      },
+    ],
+    colors: ["Gray", "Pink"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    description: "Matching Tanktop and jogger set with embroidered logo",
+    available: true,
+  },
+  {
+    id: "7",
+    name: "Sin Thumb Sleeves",
+    price: 70000,
     images: ["/images/thumb.jpg"],
     colorVariants: [
       {

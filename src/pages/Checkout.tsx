@@ -87,7 +87,7 @@ const Checkout = () => {
 
   const onSubmit = (data: CheckoutFormData) => {
     setIsSubmitting(true);
-    
+
     const orderId = `RC${Date.now().toString().slice(-6)}`;
 
     const orderSummary = `
@@ -118,7 +118,7 @@ ${cartItems
 💰 *Total: ${formatPrice(totalPrice)}*
     `;
 
-    const phoneNumber = "+2348106771807";
+    const phoneNumber = "+2347079130602";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       orderSummary
     )}`;
@@ -141,7 +141,9 @@ ${cartItems
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
           <div className="bg-white rounded-2xl p-8 flex flex-col items-center gap-4 shadow-2xl">
             <div className="w-16 h-16 border-4 border-black/20 border-t-black rounded-full animate-spin" />
-            <p className="text-black font-semibold text-lg">Processing your order...</p>
+            <p className="text-black font-semibold text-lg">
+              Processing your order...
+            </p>
           </div>
         </div>
       )}
