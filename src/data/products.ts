@@ -153,8 +153,8 @@ export const products: Product[] = [
   },
   {
     id: "7",
-    name: "Sin Thumb Sleeves",
-    price: 70000,
+    name: "(4 pieces)Sin Thumb Sleeves",
+    price: 2999.99,
     images: ["/images/thumb.jpg"],
     colorVariants: [
       {
@@ -164,7 +164,7 @@ export const products: Product[] = [
     ],
     colors: ["Black"],
     sizes: ["One Size"],
-    description: "Comfort-fit thumb sleeves with logo",
-    available: false,
+    description: " 4 pieces Comfort-fit thumb sleeves with logo",
+    available: true,
   },
 ];
