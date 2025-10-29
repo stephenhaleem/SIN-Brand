@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react";
 
-const Loader = ({ onComplete }: { onComplete: () => void }) => {
+const Loader = ({ onComplete, imagesLoaded }: { onComplete: () => void; imagesLoaded: boolean }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(onComplete, 300);
-          return 100;
+        // Wait for images to load before reaching 100
+        const maxProgress = imagesLoaded ? 100 : 90;
+        
+        if (prev >= maxProgress) {
+          if (imagesLoaded && prev >= 100) {
+            clearInterval(interval);
+            setTimeout(onComplete, 300);
+            return 100;
+          }
+          return prev;
         }
         return prev + 2;
       });
     }, 30);
 
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, [onComplete, imagesLoaded]);
 
   return (
     <div className="fixed inset-0 bg-background z-[9999] flex items-center justify-center ">
