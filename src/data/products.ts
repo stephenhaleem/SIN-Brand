@@ -105,8 +105,12 @@ export const products: Product[] = [
         color: "Pink",
         images: ["/images/pink skull.jpg"],
       },
+      {
+        color: "Black",
+        images: ["/images/black skull.jpg"],
+      },
     ],
-    colors: ["Gray", "White", "Pink"],
+    colors: ["Gray", "White", "Pink", "Black"],
     sizes: ["One Size"],
     description: "Classic skullcap with embroidered logo",
     available: true,
